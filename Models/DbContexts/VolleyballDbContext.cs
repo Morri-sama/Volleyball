@@ -26,9 +26,12 @@ namespace Models.DbContexts
             base.OnModelCreating(builder);
         }
 
+        public DbSet<Action> Actions { get; set; }
         public DbSet<Player> Players { get; set; }
         public DbSet<Team> Teams { get; set; }
         public DbSet<Position> Positions { get; set; }
         public DbSet<Match> Matches { get; set; }
+        public DbSet<Rally> Rallies { get; set; }
+        public DbSet<Set> Sets { get; set; }
     }
 }

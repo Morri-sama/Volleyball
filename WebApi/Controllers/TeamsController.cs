@@ -12,20 +12,27 @@ namespace WebApi.Controllers
     [ApiController]
     public class TeamsController : ControllerBase
     {
-        VolleyballDbContext _context;
+        readonly VolleyballDbContext _context;
 
         public TeamsController(VolleyballDbContext context)
         {
             _context = context;
         }
 
-        [HttpGet, Route("Teams")]
-        public ActionResult<List<Team>> Get()
+
+        [HttpGet]
+        public IActionResult Get()
         {
-            return _context.Teams.ToList();
+            var teams = _context.Teams.ToList();
+            if (!teams.Any())
+            {
+                return NotFound();
+            }
+            return Ok(teams);
         }
 
-        public IActionResult Post([FromBody] Team team)
+        [HttpPost]
+        public IActionResult Post([FromBody]Team team)
         {
             if (ModelState.IsValid)
             {
