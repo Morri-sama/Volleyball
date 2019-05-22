@@ -1,11 +1,12 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace Models.DbContexts
 {
-    public class VolleyballDbContext : DbContext
+    public class VolleyballDbContext : IdentityDbContext<User>
     {
         public VolleyballDbContext(DbContextOptions<VolleyballDbContext> options) : base(options)
         {
@@ -14,6 +15,7 @@ namespace Models.DbContexts
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
+            builder.Entity<User>().ToTable("Users", "dbo");
             builder.Entity<Position>().HasData(new Position[]
             {
                 new Position(){Id=1, Name="Позиция 1 — справа сзади.", Description="Занимает подающий доигровщик — нападает из зоны IIтемпа. Обладает сильным ударом, способен работать с мячом — закручивать, тушевать."},
