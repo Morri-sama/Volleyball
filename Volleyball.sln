@@ -5,13 +5,13 @@ VisualStudioVersion = 16.0.28803.156
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Models", "Models\Models.csproj", "{7EAC6666-79C3-4D41-8D73-A69C2B336C49}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApi", "WebApi\WebApi.csproj", "{BC4A7545-5864-40E5-A49F-F3459514029A}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApplication", "WebApplication\WebApplication.csproj", "{187440EB-1C45-4770-A37E-86886578F1FC}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MobileApp.Android", "MobileApp\MobileApp.Android\MobileApp.Android.csproj", "{CE60CE98-DE88-4DE3-83D7-E30E8ADCB206}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MobileApp", "MobileApp\MobileApp\MobileApp.csproj", "{ED19B258-4DB5-4864-B16B-84607651C7B6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MobileApp", "MobileApp\MobileApp\MobileApp.csproj", "{ED19B258-4DB5-4864-B16B-84607651C7B6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApi", "WebApi\WebApi.csproj", "{257F236B-0F16-490F-9DEC-5FF8C2867912}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +23,6 @@ Global
 		{7EAC6666-79C3-4D41-8D73-A69C2B336C49}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7EAC6666-79C3-4D41-8D73-A69C2B336C49}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7EAC6666-79C3-4D41-8D73-A69C2B336C49}.Release|Any CPU.Build.0 = Release|Any CPU
-		{BC4A7545-5864-40E5-A49F-F3459514029A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BC4A7545-5864-40E5-A49F-F3459514029A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BC4A7545-5864-40E5-A49F-F3459514029A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BC4A7545-5864-40E5-A49F-F3459514029A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{187440EB-1C45-4770-A37E-86886578F1FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{187440EB-1C45-4770-A37E-86886578F1FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{187440EB-1C45-4770-A37E-86886578F1FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -41,6 +37,10 @@ Global
 		{ED19B258-4DB5-4864-B16B-84607651C7B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ED19B258-4DB5-4864-B16B-84607651C7B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ED19B258-4DB5-4864-B16B-84607651C7B6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{257F236B-0F16-490F-9DEC-5FF8C2867912}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{257F236B-0F16-490F-9DEC-5FF8C2867912}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{257F236B-0F16-490F-9DEC-5FF8C2867912}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{257F236B-0F16-490F-9DEC-5FF8C2867912}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

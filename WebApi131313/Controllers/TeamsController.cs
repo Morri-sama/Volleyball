@@ -1,10 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Models;
+using Models.DbContexts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using WebApi.Data.DbContexts;
 
 namespace WebApi.Controllers
 {
@@ -12,9 +12,9 @@ namespace WebApi.Controllers
     [ApiController]
     public class TeamsController : ControllerBase
     {
-        readonly WebApiDbContext _context;
+        readonly VolleyballDbContext _context;
 
-        public TeamsController(WebApiDbContext context)
+        public TeamsController(VolleyballDbContext context)
         {
             _context = context;
         }

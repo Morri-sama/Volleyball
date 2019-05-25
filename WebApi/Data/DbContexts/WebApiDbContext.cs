@@ -1,20 +1,32 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using System;
+using Models;
 using System.Collections.Generic;
-using System.Text;
+using System.Linq;
+using System.Threading.Tasks;
 
-namespace Models.DbContexts
+namespace WebApi.Data.DbContexts
 {
-    public class VolleyballDbContext : IdentityDbContext<User>
+    public class WebApiDbContext : IdentityDbContext<User, IdentityRole<int>, int>
     {
-        public VolleyballDbContext(DbContextOptions<VolleyballDbContext> options) : base(options)
+        public DbSet<Action> Actions { get; set; }
+        public DbSet<Player> Players { get; set; }
+        public DbSet<Team> Teams { get; set; }
+        public DbSet<Position> Positions { get; set; }
+        public DbSet<Match> Matches { get; set; }
+        public DbSet<Rally> Rallies { get; set; }
+        public DbSet<Set> Sets { get; set; }
+        public new DbSet<User> Users { get; set; }
+
+        public WebApiDbContext(DbContextOptions<WebApiDbContext> options) : base(options)
         {
             Database.EnsureCreated();
         }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
+            base.OnModelCreating(builder);
             builder.Entity<User>().ToTable("Users", "dbo");
             builder.Entity<Position>().HasData(new Position[]
             {
@@ -25,15 +37,6 @@ namespace Models.DbContexts
                 new Position(){Id=5, Name="Позиция 5 — слева сзади.", Description="Занимает связующий или плеймейкер — участник команды, которому принадлежит право второго удара после атаки соперников. Его задача так подать мяч нападающему, чтобы тот смог провести результативный удар. Нужно обладать скоростью реакции и точностью подачи."},
                 new Position(){Id=6, Name="Позиция 6 — посредине сзади.", Description="Занимает блокирующий — самый высокий и выносливый член команды. Он блокирует удары."},
             });
-            base.OnModelCreating(builder);
         }
-
-        public DbSet<Action> Actions { get; set; }
-        public DbSet<Player> Players { get; set; }
-        public DbSet<Team> Teams { get; set; }
-        public DbSet<Position> Positions { get; set; }
-        public DbSet<Match> Matches { get; set; }
-        public DbSet<Rally> Rallies { get; set; }
-        public DbSet<Set> Sets { get; set; }
     }
 }

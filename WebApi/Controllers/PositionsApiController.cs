@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,20 +10,19 @@ namespace WebApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class SetsController : ControllerBase
+    public class PositionsController : ControllerBase
     {
         readonly WebApiDbContext _context;
 
-        public SetsController(WebApiDbContext context)
+        public PositionsController(WebApiDbContext context)
         {
             _context = context;
         }
 
-        [HttpGet, Route("{matchId}")]
-        public IActionResult Get(int matchId)
+        [HttpGet]
+        public ActionResult<List<Position>> Get()
         {
-            var teams = _context.Sets.Where(d => d.MatchId == matchId);
-            return Ok(teams);
+            return _context.Positions.ToList();
         }
     }
 }

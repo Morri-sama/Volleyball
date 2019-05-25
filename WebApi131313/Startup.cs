@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -14,7 +13,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Models;
-using WebApi.Data.DbContexts;
+using Models.DbContexts;
 
 namespace WebApi
 {
@@ -29,6 +28,10 @@ namespace WebApi
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<VolleyballDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("LocalDbConnection")));
+
+            services.AddIdentity<User, IdentityRole>()
+                .AddEntityFrameworkStores<VolleyballDbContext>();
 
             services.Configure<IdentityOptions>(options =>
             {
@@ -39,21 +42,13 @@ namespace WebApi
                 options.Password.RequireUppercase = false;
             });
 
-            services.AddIdentity<User, IdentityRole<int>>()
-                .AddEntityFrameworkStores<WebApiDbContext>();
-
-            services.AddDbContext<WebApiDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("LocalDbConnection")));
-
-
             services.AddCors(s => s.AddDefaultPolicy(policy => policy.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin()));
-
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             app.UseCors();
-            app.UseHttpsRedirection();
             app.UseMvc();
         }
     }

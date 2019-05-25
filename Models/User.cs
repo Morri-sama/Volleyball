@@ -7,7 +7,7 @@ using System.Text;
 namespace Models
 {
     [Table("Users")]
-    public class User : IdentityUser
+    public class User : IdentityUser<int>
     {
         public string FirstName { get; set; }
         public string MiddleName { get; set; }

@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Models.DbContexts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using WebApi.Data.DbContexts;
 
 namespace WebApi.Controllers
 {
@@ -11,9 +11,9 @@ namespace WebApi.Controllers
     [ApiController]
     public class SetsController : ControllerBase
     {
-        readonly WebApiDbContext _context;
+        readonly VolleyballDbContext _context;
 
-        public SetsController(WebApiDbContext context)
+        public SetsController(VolleyballDbContext context)
         {
             _context = context;
         }
