@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MobileApp.Views.AddTeamPage">
+    <ContentPage.Content>
+        <StackLayout Margin="15,200,15,15">
+            <Label Text="Создание команды" HorizontalTextAlignment="Center" />
+            <Entry x:Name="TeamNameEntry"
+                   Placeholder="Название команды" />
+            <Label Text="Игроки"></Label>
+            <ListView x:Name="playersList"
+                      ItemsSource="{Binding Team.Players}">
+            </ListView>
+            <Button x:Name="AddPlayer"
+                        Text="Добавить игрока"
+                        BackgroundColor="#69F0AE" 
+                        TextColor="Black" 
+                        HorizontalOptions="Center"
+                        Clicked="AddPlayer_Clicked"></Button>
+            <StackLayout Orientation="Horizontal">
+                <Button x:Name="SignInButton"
+                        Text="Добавить"
+                        BackgroundColor="#2196F3" 
+                        TextColor="White" 
+                        HorizontalOptions="Center">
+                </Button>
+            </StackLayout>
+            <Label x:Name="StatusLabel"
+                Text="Поле" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

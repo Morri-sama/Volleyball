@@ -19,6 +19,8 @@ namespace MobileApp.Views
         {
             InitializeComponent();
 
+            Navigation.PushModalAsync(new SignInPage());
+
             MasterBehavior = MasterBehavior.Popover;
 
             MenuPages.Add((int)MenuItemType.Browse, (NavigationPage)Detail);

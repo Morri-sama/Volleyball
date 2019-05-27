@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MobileApp.Views.AddPlayerPage">
+    <ContentPage.Content>
+        <StackLayout Margin="15,200,15,15">
+            <Label Text="Добавление игрока" HorizontalTextAlignment="Center" />
+            <Entry x:Name="PlayerNameEntry"
+                   Placeholder="Имя игрока" />
+            <Picker x:Name="picker"
+                    ItemsSource="{Binding PickerItemList}"
+                    ItemDisplayBinding="{Binding Value}"
+                    SelectedIndexChanged="Picker_SelectedIndexChanged">
+                
+            </Picker>
+            <StackLayout Orientation="Horizontal">
+                <Button x:Name="AddPlayer"
+                        Text="Добавить игрока"
+                        BackgroundColor="#69F0AE" 
+                        TextColor="Black" 
+                        HorizontalOptions="Center">
+                </Button>
+            </StackLayout>
+            <Label x:Name="StatusLabel"
+                Text="Поле" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

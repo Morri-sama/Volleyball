@@ -1,21 +1,19 @@
 ﻿using System;
+using VolleyballApp.Views;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using MobileApp.Services;
-using MobileApp.Views;
 
-namespace MobileApp
+namespace VolleyballApp
 {
     public partial class App : Application
     {
-
         public App()
         {
             InitializeComponent();
 
-            DependencyService.Register<MockDataStore>();
-            //MainPage = new NavigationPage(new SignInPage());
-            MainPage = new NavigationPage(new AddPlayerPage());
+            Application.Current.Properties["apiUrl"] = @"http://192.168.42.151:5000/";
+
+            MainPage = new TeamsPage();
         }
 
         protected override void OnStart()

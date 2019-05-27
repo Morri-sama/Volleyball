@@ -14,7 +14,7 @@ namespace MobileApp.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class SignUpPage : ContentPage
     {
-        string apiUrl = @"http://192.168.1.33:5000/";
+        string apiUrl = @"http://192.168.42.151:5000/";
 
         public SignUpPage()
         {
@@ -37,7 +37,7 @@ namespace MobileApp.Views
             using (var httpClient = new HttpClient())
             {
                 var stringContent = new StringContent(JsonConvert.SerializeObject(model), Encoding.UTF8, "application/json");
-                response = httpClient.PostAsync(new Uri(apiUrl + "api/account"), stringContent).Result;
+                response = httpClient.PostAsync(new Uri(apiUrl + "api/account/register"), stringContent).Result;
 
                 if (response.IsSuccessStatusCode)
                 {

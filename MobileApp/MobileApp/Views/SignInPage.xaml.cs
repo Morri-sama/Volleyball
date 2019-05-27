@@ -14,7 +14,7 @@ namespace MobileApp.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class SignInPage : ContentPage
     {
-        string apiUrl = @"http://192.168.1.33:5000/";
+        string apiUrl = @"http://192.168.42.151:5000/";
 
         public SignInPage()
         {
