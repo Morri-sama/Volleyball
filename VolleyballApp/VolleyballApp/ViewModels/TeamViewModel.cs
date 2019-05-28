@@ -18,6 +18,11 @@ namespace VolleyballApp.ViewModels
             Team = new Team();
         }
 
+        public TeamViewModel(Team team)
+        {
+            Team = team;
+        }
+
         public TeamsViewModel TeamsViewModel
         {
             get
@@ -49,6 +54,38 @@ namespace VolleyballApp.ViewModels
                 }
             }
 
+        }
+
+        public string Name
+        {
+            get
+            {
+                return Team.Name;
+            }
+            set
+            {
+                if(Team.Name != value)
+                {
+                    Team.Name = value;
+                    OnPropertyChanged("Name");
+                }
+            }
+        }
+
+        public List<Player> Players
+        {
+            get
+            {
+                return Team.Players;
+            }
+            set
+            {
+                if(Team.Players != value)
+                {
+                    Team.Players = value;
+                    OnPropertyChanged("Players");
+                }
+            }
         }
 
         protected void OnPropertyChanged(string propertyName)

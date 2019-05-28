@@ -4,9 +4,23 @@
              x:Class="VolleyballApp.Views.TeamPage">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <Label Text="Название команды"/>
+            <Entry Text="{Binding Name}"/>
+            <Label Text="Игроки"/>
+            <ListView ItemsSource="{Binding Players}" HasUnevenRows="True">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <ViewCell.View>
+                                <StackLayout>
+                                    <Label Text="{Binding Name}" FontSize="18" />
+                                    <Label Text="{Binding SquadNumber}" />
+                                </StackLayout>
+                            </ViewCell.View>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
