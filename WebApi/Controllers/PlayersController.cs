@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,6 +28,26 @@ namespace WebApi.Controllers
                 return Ok(null);
             }
             return Ok(players);
+        }
+
+        [HttpGet]
+        [Route("{teamId}")]
+        public IActionResult Get(int teamId)
+        {
+            var players = _context.Players.Where(p => p.TeamId == teamId).ToList();
+            if (!players.Any())
+            {
+                return Ok(null);
+            }
+            return Ok(players);
+        }
+
+        [HttpPost]
+        public IActionResult Post(Player player)
+        {
+            _context.Players.Add(player);
+            _context.SaveChanges();
+            return Ok();
         }
     }
 }

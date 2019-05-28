@@ -24,5 +24,12 @@ namespace WebApi.Controllers
         {
             return _context.Positions.ToList();
         }
+
+        [HttpGet]
+        [Route("{positionId}")]
+        public ActionResult<Position> Get(int positionId)
+        {
+            return _context.Positions.SingleOrDefault(p => p.Id == positionId);
+        }
     }
 }

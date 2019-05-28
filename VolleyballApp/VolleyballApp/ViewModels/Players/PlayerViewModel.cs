@@ -3,14 +3,16 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
+using VolleyballApp.Helpers;
 
-namespace VolleyballApp.ViewModels
+namespace VolleyballApp.ViewModels.Players
 {
     public class PlayerViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
         public Player Player { get; private set; }
+        PlayersViewModel _playersViewModel;
 
         public PlayerViewModel()
         {
@@ -20,6 +22,23 @@ namespace VolleyballApp.ViewModels
         public PlayerViewModel(Player player)
         {
             Player = player;
+            Player.Position = WebApiClient.GetPosition(Player.PositionId);
+        }
+
+        public PlayersViewModel PlayersViewModel
+        {
+            get
+            {
+                return _playersViewModel;
+            }
+            set
+            {
+                if (_playersViewModel != value)
+                {
+                    _playersViewModel = value;
+                    OnPropertyChanged("PlayersViewModel");
+                }
+            }
         }
 
         public int Id
@@ -62,7 +81,7 @@ namespace VolleyballApp.ViewModels
             }
             set
             {
-                if(Player.SquadNumber != value)
+                if (Player.SquadNumber != value)
                 {
                     Player.SquadNumber = value;
                     OnPropertyChanged("SquadNumber");
@@ -94,7 +113,7 @@ namespace VolleyballApp.ViewModels
             }
             set
             {
-                if(Player.Position != Position)
+                if (Player.Position != Position)
                 {
                     Player.Position = value;
                     OnPropertyChanged("Position");
@@ -110,7 +129,7 @@ namespace VolleyballApp.ViewModels
             }
             set
             {
-                if(Player.TeamId != TeamId)
+                if (Player.TeamId != TeamId)
                 {
                     Player.TeamId = value;
                     OnPropertyChanged("TeamId");

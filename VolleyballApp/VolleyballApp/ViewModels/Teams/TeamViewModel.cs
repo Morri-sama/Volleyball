@@ -1,10 +1,18 @@
 ﻿using Models;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Net.Http;
 using System.Text;
+using System.Windows.Input;
+using VolleyballApp.Helpers;
+using VolleyballApp.ViewModels.Players;
+using VolleyballApp.Views.Players;
+using Xamarin.Forms;
 
-namespace VolleyballApp.ViewModels
+namespace VolleyballApp.ViewModels.Teams
 {
     public class TeamViewModel : INotifyPropertyChanged
     {
@@ -12,16 +20,25 @@ namespace VolleyballApp.ViewModels
         TeamsViewModel _teamsViewModel;
 
         public Team Team { get; private set; }
+        public PlayersViewModel PlayersViewModel { get; set; }
+
+        public ICommand DisplayPlayersCommand { get; protected set; }
+
+        public INavigation Navigation { get; set; }
 
         public TeamViewModel()
         {
             Team = new Team();
+            DisplayPlayersCommand = new Command(DisplayPlayers);
         }
 
         public TeamViewModel(Team team)
         {
             Team = team;
+            PlayersViewModel = new PlayersViewModel(Team.Id);
         }
+
+
 
         public TeamsViewModel TeamsViewModel
         {
@@ -37,6 +54,21 @@ namespace VolleyballApp.ViewModels
                     OnPropertyChanged("TeamsViewModel");
                 }
             }
+        }
+
+        private void DisplayPlayers()
+        {
+            Navigation.PushAsync(new PlayersPage(new ))
+        }
+
+        public List<PlayerViewModel> GetPlayerViewModels()
+        {
+            List<PlayerViewModel> vms = new List<PlayerViewModel>();
+            foreach (var player in WebApiClient.GetPlayers(Team.Id))
+            {
+                vms.Add(new PlayerViewModel(player));
+            }
+            return vms;
         }
 
         public int Id
@@ -68,22 +100,6 @@ namespace VolleyballApp.ViewModels
                 {
                     Team.Name = value;
                     OnPropertyChanged("Name");
-                }
-            }
-        }
-
-        public List<Player> Players
-        {
-            get
-            {
-                return Team.Players;
-            }
-            set
-            {
-                if(Team.Players != value)
-                {
-                    Team.Players = value;
-                    OnPropertyChanged("Players");
                 }
             }
         }

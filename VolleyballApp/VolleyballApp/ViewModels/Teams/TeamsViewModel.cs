@@ -8,10 +8,12 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using VolleyballApp.Helpers;
 using VolleyballApp.Views;
+using VolleyballApp.Views.Teams;
 using Xamarin.Forms;
 
-namespace VolleyballApp.ViewModels
+namespace VolleyballApp.ViewModels.Teams
 {
     public class TeamsViewModel : INotifyPropertyChanged
     {
@@ -19,7 +21,10 @@ namespace VolleyballApp.ViewModels
 
         public ObservableCollection<TeamViewModel> Teams { get; set; }
 
+        public ICommand RefreshTeamsCommand { get; protected set; }
         public ICommand CreateTeamCommand { get; protected set; }
+
+        public ICommand SaveTeamCommand { get; protected set; }
         public ICommand DeleteTeamCommand { get; protected set; }
         public ICommand BackCommand { get; protected set; }
 
@@ -30,39 +35,43 @@ namespace VolleyballApp.ViewModels
         public TeamsViewModel()
         {
             Teams = new ObservableCollection<TeamViewModel>(GetTeamViewModels());
+            RefreshTeamsCommand = new Command(RefreshTeams);
             CreateTeamCommand = new Command(CreateTeam);
+            SaveTeamCommand = new Command(SaveTeam);
             DeleteTeamCommand = new Command(DeleteTeam);
             BackCommand = new Command(Back);
         }
 
         public List<TeamViewModel> GetTeamViewModels()
         {
-            HttpResponseMessage response = null;
-            List<TeamViewModel> vms = null;
-            using (var httpClient = new HttpClient())
+            List<TeamViewModel> vms = new List<TeamViewModel>();
+            foreach (var team in WebApiClient.GetTeams())
             {
-                response = httpClient.GetAsync(new Uri(Application.Current.Properties["apiUrl"] as string + "api/teams/")).Result;
-
-                if (response.IsSuccessStatusCode)
-                {
-                    List<Team> teams =  JsonConvert.DeserializeObject<List<Team>>(response.Content.ReadAsStringAsync().Result);
-                    vms = new List<TeamViewModel>();
-                    foreach (var team in teams)
-                    {
-                        vms.Add(new TeamViewModel(team));
-                    }
-                    return vms;
-                }
-                else
-                {
-                    return null;
-                }
+                vms.Add(new TeamViewModel(team));
             }
+            return vms;
         }
+
+        private void RefreshTeams()
+        {
+            Teams = new ObservableCollection<TeamViewModel>(GetTeamViewModels());
+        }
+
 
         private void CreateTeam()
         {
-            Navigation.PushAsync(new TeamPage(new TeamViewModel() { TeamsViewModel = this }));
+            Navigation.PushAsync(new TeamPage(new TeamViewModel() { TeamsViewModel = this, Navigation = Navigation }));
+        }
+
+        private void SaveTeam(object teamObject)
+        {
+            TeamViewModel team = teamObject as TeamViewModel;
+            if(team!= null)
+            {
+                WebApiClient.AddTeam(team.Team);
+                Teams.Add(team);
+            }
+            Back();
         }
 
         private void DeleteTeam()
@@ -72,7 +81,7 @@ namespace VolleyballApp.ViewModels
 
         private void Back()
         {
-
+            Navigation.PopAsync();
         }
 
         public TeamViewModel SelectedTeam

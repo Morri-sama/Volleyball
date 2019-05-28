@@ -1,13 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="VolleyballApp.Views.TeamPage">
+             x:Class="VolleyballApp.Views.Teams.TeamPage">
     <ContentPage.Content>
         <StackLayout>
             <Label Text="Название команды"/>
             <Entry Text="{Binding Name}"/>
             <Label Text="Игроки"/>
-            <ListView ItemsSource="{Binding Players}" HasUnevenRows="True">
+            <!--<ListView ItemsSource="{Binding PlayersViewModel.Players}" HasUnevenRows="True">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
@@ -15,12 +15,16 @@
                                 <StackLayout>
                                     <Label Text="{Binding Name}" FontSize="18" />
                                     <Label Text="{Binding SquadNumber}" />
+                                    <Label Text="{Binding Position.Name}" FontSize="Medium" />
                                 </StackLayout>
                             </ViewCell.View>
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
-            </ListView>
+            </ListView>-->
+            <Button Text="Назад" Command="{Binding TeamsViewModel.BackCommand}" CommandParameter="{Binding}"></Button>
+            <Button Text="Игроки" Command="{Binding TeamsViewModel.PlayersCommand}" CommandParameter="{Binding}"></Button>
+            <Button Text="Сохранить" Command="{Binding TeamsViewModel.SaveTeamCommand}" CommandParameter="{Binding}"></Button>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

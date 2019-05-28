@@ -3,16 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using VolleyballApp.ViewModels.Players;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace VolleyballApp.Views
+namespace VolleyballApp.Views.Players
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class PlayerPage : ContentPage
+    public partial class PlayersPage : ContentPage
     {
-        public PlayerPage()
+        public PlayersPage()
         {
             InitializeComponent();
         }

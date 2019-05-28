@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using VolleyballApp.ViewModels;
+using VolleyballApp.ViewModels.Teams;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace VolleyballApp.Views
+namespace VolleyballApp.Views.Teams
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class TeamPage : ContentPage
