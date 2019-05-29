@@ -11,6 +11,7 @@ namespace WebApi.Data.DbContexts
     public class WebApiDbContext : IdentityDbContext<User, IdentityRole<int>, int>
     {
         public DbSet<Action> Actions { get; set; }
+        public DbSet<KickOff> KickOffs { get; set; }
         public DbSet<Player> Players { get; set; }
         public DbSet<Team> Teams { get; set; }
         public DbSet<Position> Positions { get; set; }

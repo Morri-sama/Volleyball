@@ -4,33 +4,28 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="MobileApp.Views.SignInPage">
+             x:Class="VolleyballApp.Views.Account.SignInPage">
     <ContentPage.Content>
         <StackLayout Margin="15,200,15,15">
             <Label Text="Добро пожаловать!" HorizontalTextAlignment="Center" />
-            <Entry x:Name="UserNameEntry"
-                   Placeholder="Логин" />
-            <Entry x:Name="PasswordEntry"
-                   Placeholder="Пароль" 
-                   IsPassword="True"/>
+            <Entry Placeholder="Логин"
+                   Text="{Binding UserName}"/>
+            <Entry Placeholder="Пароль" 
+                   IsPassword="True"
+                   Text="{Binding Password}"/>
             <StackLayout Orientation="Horizontal">
-                <Button x:Name="RegisterButton"
-                        Text="Зарегестрироваться" 
+                <Button Text="Зарегестрироваться" 
                         BackgroundColor="Transparent"
                         BorderColor="Transparent"
                         TextColor="Black"
-                        HorizontalOptions="EndAndExpand"
-                        Clicked="RegisterButton_Clicked">
+                        HorizontalOptions="EndAndExpand">
                 </Button>
-                <Button x:Name="SignInButton"
-                        Text="Войти"
+                <Button Text="Войти"
                         BackgroundColor="#2196F3" 
                         TextColor="White" 
-                        HorizontalOptions="Center"
-                        Clicked="SignInButton_Clicked">
+                        HorizontalOptions="Center">                  
                 </Button>
             </StackLayout>
         </StackLayout>
-       
     </ContentPage.Content>
 </ContentPage>

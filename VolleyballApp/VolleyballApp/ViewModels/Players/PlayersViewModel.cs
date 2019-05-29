@@ -55,6 +55,7 @@ namespace VolleyballApp.ViewModels.Players
             PlayerViewModel player = playerObject as PlayerViewModel;
             if (player != null)
             {
+                player.Player.TeamId = TeamId;
                 WebApiClient.AddPlayer(player.Player);
                 Players.Add(player);
             }

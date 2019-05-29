@@ -12,7 +12,7 @@ namespace Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
-        public abstract string ActionName { get; set; }
+        public abstract string Result { get; set; }
 
         public int Index { get; set; }
 

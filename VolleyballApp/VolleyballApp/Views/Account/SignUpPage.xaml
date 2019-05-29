@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="VolleyballApp.Views.Account.SignUpPage">
+    <ContentPage.Content>
+        <StackLayout Margin="15,200,15,15">
+            <Label Text="Регистрация" 
+                   HorizontalTextAlignment="Center"
+                   FontSize="Large"/>
+            <Entry Placeholder="Имя пользователя" />
+            <Entry Placeholder="Фамилия" />
+            <Entry Placeholder="Имя" />
+            <Entry Placeholder="Отчество" />
+            <Entry Placeholder="Пароль" 
+                   IsPassword="True"/>
+            <StackLayout Orientation="Horizontal">
+                <Button x:Name="SignInButton"
+                        Text="Зарегестрироваться"
+                        BackgroundColor="#2196F3" 
+                        TextColor="White" 
+                        HorizontalOptions="EndAndExpand"
+                        Padding="10,10,10,10">
+                </Button>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

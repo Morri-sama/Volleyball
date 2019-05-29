@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Models;
@@ -25,6 +26,13 @@ namespace WebApi.Controllers
             _userManager = userManager;
             _signInManager = signInManager;
             _configuration = configuration;
+        }
+
+        [Authorize]
+        [HttpGet]
+        public IActionResult Validate()
+        {
+            return Ok();
         }
 
         [HttpPost]

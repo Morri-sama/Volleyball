@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
+using ViewModels;
 using Xamarin.Forms;
 
 namespace VolleyballApp.Helpers
@@ -15,6 +16,65 @@ namespace VolleyballApp.Helpers
         public WebApiClient()
         {
 
+        }
+
+        public static bool Validate()
+        {
+            if(!Application.Current.Properties.ContainsKey("JwtToken"))
+            {
+                return false;
+            }
+
+                using (var httpClient = new HttpClient())
+            {
+                httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", Application.Current.Properties["JwtToken"] as string);
+                HttpResponseMessage response = httpClient.GetAsync(new Uri(ApiUrl + "api/account/validate")).Result;
+
+                if (response.IsSuccessStatusCode)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
+
+        public static void Login(LoginViewModel model)
+        {
+            HttpResponseMessage response = null;
+
+            using (var httpClient = new HttpClient())
+            {
+                var stringContent = new StringContent(JsonConvert.SerializeObject(model), Encoding.UTF8, "application/json");
+                response = httpClient.PostAsync(new Uri(ApiUrl + "api/account/login"), stringContent).Result;
+
+                if (response.IsSuccessStatusCode)
+                {
+                    Application.Current.Properties["JwtToken"] = response.Content.ReadAsStringAsync().Result;
+                }
+                else
+                {
+
+                }
+            }
+        }
+
+        public static void Register(RegisterViewModel model)
+        {
+            HttpResponseMessage response = null;
+
+            using (var httpClient = new HttpClient())
+            {
+                var stringContent = new StringContent(JsonConvert.SerializeObject(model), Encoding.UTF8, "application/json");
+                response = httpClient.PostAsync(new Uri(ApiUrl + "api/account/register"), stringContent).Result;
+
+                if (response.IsSuccessStatusCode)
+                {
+                    Application.Current.Properties["JwtToken"] = response.Content.ReadAsStringAsync().Result;
+                }
+            }
         }
 
         public static Position GetPosition(int positionId)
