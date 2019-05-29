@@ -8,11 +8,11 @@
     <ContentPage.Content>
         <StackLayout>
             <Label Text="Имя игрока"/>
-            <Entry Text="{Binding Name}"/>
+            <Label Text="{Binding Name}"/>
             <Label Text="Игровой  номер"/>
-            <Entry Text="{Binding SquadNumber}"/>
+            <Label Text="{Binding SquadNumber}"/>
             <Label Text="Позиция"/>
-            <Entry Text="{Binding Position.Name}"/>
+            <Label Text="{Binding Position.Name}"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

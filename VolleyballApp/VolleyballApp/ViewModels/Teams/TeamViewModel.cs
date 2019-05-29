@@ -35,7 +35,8 @@ namespace VolleyballApp.ViewModels.Teams
         public TeamViewModel(Team team)
         {
             Team = team;
-            PlayersViewModel = new PlayersViewModel(Team.Id);
+            PlayersViewModel = new PlayersViewModel(Team.Id) { Navigation=this.Navigation};
+            DisplayPlayersCommand = new Command(DisplayPlayers);
         }
 
 
@@ -58,7 +59,7 @@ namespace VolleyballApp.ViewModels.Teams
 
         private void DisplayPlayers()
         {
-            Navigation.PushAsync(new PlayersPage(new ))
+            Navigation.PushAsync(new PlayersPage(PlayersViewModel));
         }
 
         public List<PlayerViewModel> GetPlayerViewModels()

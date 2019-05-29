@@ -34,6 +34,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Update="Views\Players\CreatePlayerPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Views\Players\PlayerPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
@@ -52,7 +55,6 @@
   <ItemGroup>
     <Compile Update="Views\Players\PlayerPage.xaml.cs">
       <DependentUpon>%(Filename)</DependentUpon>
-      <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
 </Project>

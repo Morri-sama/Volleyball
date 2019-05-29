@@ -6,24 +6,8 @@
         <StackLayout>
             <Label Text="Название команды"/>
             <Entry Text="{Binding Name}"/>
-            <Label Text="Игроки"/>
-            <!--<ListView ItemsSource="{Binding PlayersViewModel.Players}" HasUnevenRows="True">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-                            <ViewCell.View>
-                                <StackLayout>
-                                    <Label Text="{Binding Name}" FontSize="18" />
-                                    <Label Text="{Binding SquadNumber}" />
-                                    <Label Text="{Binding Position.Name}" FontSize="Medium" />
-                                </StackLayout>
-                            </ViewCell.View>
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>-->
             <Button Text="Назад" Command="{Binding TeamsViewModel.BackCommand}" CommandParameter="{Binding}"></Button>
-            <Button Text="Игроки" Command="{Binding TeamsViewModel.PlayersCommand}" CommandParameter="{Binding}"></Button>
+            <Button Text="Игроки" Command="{Binding DisplayPlayersCommand}" CommandParameter="{Binding}"></Button>
             <Button Text="Сохранить" Command="{Binding TeamsViewModel.SaveTeamCommand}" CommandParameter="{Binding}"></Button>
         </StackLayout>
     </ContentPage.Content>

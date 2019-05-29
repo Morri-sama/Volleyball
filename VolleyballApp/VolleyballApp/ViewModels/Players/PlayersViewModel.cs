@@ -16,10 +16,14 @@ namespace VolleyballApp.ViewModels.Players
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
+        public int TeamId { get; private set; }
+
         public ObservableCollection<PlayerViewModel> Players { get; set; }
         public ICommand CreatePlayerCommand { get; protected set; }
+        public ICommand AddPlayerCommand { get; protected set; }
         public ICommand SavePlayerCommand { get; protected set; }
         public ICommand DeletePlayerCommand { get; protected set; }
+        public ICommand BackCommand { get; protected set; }
 
         public INavigation Navigation { get; set; }
 
@@ -27,6 +31,10 @@ namespace VolleyballApp.ViewModels.Players
         {
             Players = new ObservableCollection<PlayerViewModel>(GetPlayerViewModels(teamId));
             CreatePlayerCommand = new Command(CreatePlayer);
+            AddPlayerCommand = new Command(AddPlayer);
+            BackCommand = new Command(Back);
+
+            TeamId = teamId;
         }
 
         public List<PlayerViewModel> GetPlayerViewModels(int teamId)
@@ -34,16 +42,28 @@ namespace VolleyballApp.ViewModels.Players
             List<PlayerViewModel> vms = new List<PlayerViewModel>();
 
             WebApiClient.GetPlayers(teamId)?.AsParallel().ForAll(player => vms.Add(new PlayerViewModel(player)));
-            //foreach (Player player in WebApiClient.GetPlayers(teamId))
-            //{
-            //    vms.Add(new PlayerViewModel(player));
-            //}
             return vms;
         }
 
         private void CreatePlayer()
         {
-            Navigation.PushAsync(new PlayerPage(new PlayerViewModel() { PlayersViewModel = this }));
+            Navigation.PushAsync(new CreatePlayerPage(new PlayerViewModel() { PlayersViewModel = this }));
+        }
+
+        private void AddPlayer(object playerObject)
+        {
+            PlayerViewModel player = playerObject as PlayerViewModel;
+            if (player != null)
+            {
+                WebApiClient.AddPlayer(player.Player);
+                Players.Add(player);
+            }
+            Back();
+        }
+
+        private void Back()
+        {
+            Navigation.PopAsync();
         }
 
     }

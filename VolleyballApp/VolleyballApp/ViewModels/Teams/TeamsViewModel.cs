@@ -47,7 +47,7 @@ namespace VolleyballApp.ViewModels.Teams
             List<TeamViewModel> vms = new List<TeamViewModel>();
             foreach (var team in WebApiClient.GetTeams())
             {
-                vms.Add(new TeamViewModel(team));
+                vms.Add(new TeamViewModel(team) { Navigation = this.Navigation});
             }
             return vms;
         }
@@ -92,8 +92,9 @@ namespace VolleyballApp.ViewModels.Teams
                 if (selectedTeam != value)
                 {
                     TeamViewModel tempTeam = value;
+                    tempTeam.Navigation = this.Navigation;
                     selectedTeam = null;
-                    OnPropertyChanged("SelectedFriend");
+                    OnPropertyChanged("SelectedTeam");
                     Navigation.PushAsync(new TeamPage(tempTeam));
                 }
             }

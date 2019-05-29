@@ -12,7 +12,7 @@ namespace VolleyballApp
         {
             InitializeComponent();
 
-            Application.Current.Properties["apiUrl"] = @"http://192.168.42.151:5000/";
+            Application.Current.Properties["apiUrl"] = @"http://192.168.1.33:5000/";
 
             MainPage = new NavigationPage(new TeamsPage());
         }

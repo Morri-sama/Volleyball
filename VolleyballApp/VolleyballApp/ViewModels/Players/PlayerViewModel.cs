@@ -17,12 +17,20 @@ namespace VolleyballApp.ViewModels.Players
         public PlayerViewModel()
         {
             Player = new Player();
+            if (PlayersViewModel != null)
+            {
+                Player.TeamId = PlayersViewModel.TeamId;
+            }
         }
 
         public PlayerViewModel(Player player)
         {
             Player = player;
             Player.Position = WebApiClient.GetPosition(Player.PositionId);
+            if(PlayersViewModel!= null)
+            {
+
+            }
         }
 
         public PlayersViewModel PlayersViewModel
@@ -116,6 +124,7 @@ namespace VolleyballApp.ViewModels.Players
                 if (Player.Position != Position)
                 {
                     Player.Position = value;
+                    PositionId = value.Id;
                     OnPropertyChanged("Position");
                 }
             }
@@ -136,6 +145,8 @@ namespace VolleyballApp.ViewModels.Players
                 }
             }
         }
+
+        public List<Position> Positions { get; } = WebApiClient.GetPositions();
 
         public Team Team
         {
