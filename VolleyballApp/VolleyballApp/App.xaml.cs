@@ -1,4 +1,5 @@
 ﻿using System;
+using VolleyballApp.Services.Navigation;
 using VolleyballApp.Views;
 using VolleyballApp.Views.Settings;
 using VolleyballApp.Views.Teams;
@@ -7,7 +8,7 @@ using Xamarin.Forms.Xaml;
 
 namespace VolleyballApp
 {
-    public partial class App : Application
+    public partial class App : Application, IHaveMainPage
     {
         public App()
         {
@@ -15,7 +16,7 @@ namespace VolleyballApp
 
             Application.Current.Properties["apiUrl"] = @"http://192.168.42.151:5000/";
 
-            MainPage = new NavigationPage(new MainPagePage());
+            MainPage = new MainPagePage();
         }
 
         protected override void OnStart()

@@ -16,7 +16,6 @@ namespace VolleyballApp.Views.Teams
         public TeamsPage()
         {
             InitializeComponent();
-            BindingContext = new TeamsViewModel() { Navigation = this.Navigation };
         }
     }
 }
