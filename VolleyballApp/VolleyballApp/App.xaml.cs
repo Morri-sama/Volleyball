@@ -1,5 +1,6 @@
 ﻿using System;
 using VolleyballApp.Services.Navigation;
+using VolleyballApp.ViewModels;
 using VolleyballApp.Views;
 using VolleyballApp.Views.Settings;
 using VolleyballApp.Views.Teams;
@@ -16,7 +17,11 @@ namespace VolleyballApp
 
             Application.Current.Properties["apiUrl"] = @"http://192.168.42.151:5000/";
 
-            MainPage = new MainPagePage();
+            var navigator = new NavigationService(this, new ViewLocator());
+
+            var rootViewModel = new MainPageViewModel(navigator);
+
+            navigator.PresentAsNavigatableMainPage(rootViewModel);
         }
 
         protected override void OnStart()

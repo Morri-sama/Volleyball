@@ -5,14 +5,13 @@ using System.Text;
 using System.Windows.Input;
 using ViewModels;
 using VolleyballApp.Helpers;
+using VolleyballApp.Services.Navigation;
 using Xamarin.Forms;
 
 namespace VolleyballApp.ViewModels.Account
 {
-    public class SignInViewModel : INotifyPropertyChanged
+    public class SignInViewModel : ViewModelBase
     {
-        public event PropertyChangedEventHandler PropertyChanged;
-
         public string UserName
         {
             get
@@ -24,7 +23,7 @@ namespace VolleyballApp.ViewModels.Account
                 if (LoginViewModel.UserName != value)
                 {
                     LoginViewModel.UserName = value;
-                    OnPropertyChanged("UserName");
+                    //OnPropertyChanged("UserName");
                 }
             }
         }
@@ -40,19 +39,20 @@ namespace VolleyballApp.ViewModels.Account
                 if (LoginViewModel.Password != value)
                 {
                     LoginViewModel.Password = value;
-                    OnPropertyChanged("Password");
+                    //OnPropertyChanged("Password");
                 }
             }
         }
 
         public LoginViewModel LoginViewModel { get; set; }
 
-        public INavigation Navigation { get; set; }
+        private readonly INavigationService _navigator;
 
         public ICommand SignInCommand;
 
-        public SignInViewModel()
+        public SignInViewModel(INavigationService navigator)
         {
+            _navigator = navigator;
             SignInCommand = new Command(SignIn);
         }
 
@@ -63,7 +63,7 @@ namespace VolleyballApp.ViewModels.Account
 
         protected void OnPropertyChanged(string propertyName)
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            //PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
     }

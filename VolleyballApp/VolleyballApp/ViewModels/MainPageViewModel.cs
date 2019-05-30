@@ -3,27 +3,28 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
 using VolleyballApp.Helpers;
+using VolleyballApp.Services.Navigation;
 using VolleyballApp.ViewModels.Account;
 using VolleyballApp.Views.Account;
 using Xamarin.Forms;
 
 namespace VolleyballApp.ViewModels
 {
-    public class MainPageViewModel : INotifyPropertyChanged
+    public class MainPageViewModel : ViewModelBase, INotifyPropertyChanged
     {
-        public event PropertyChangedEventHandler PropertyChanged;
+        private readonly INavigationService _navigator;
 
-        public INavigation Navigation { get; set; }
-
-        public MainPageViewModel()
+        public MainPageViewModel(INavigationService navigator)
         {
+            _navigator = navigator;
+
             if (WebApiClient.Validate())
             {
 
             }
             else
             {
-                Navigation.PushAsync(new SignInPage(new SignInViewModel() { Navigation = this.Navigation}));
+                _navigator.NavigateTo(new SignInViewModel(_navigator));
             }
         }
     }

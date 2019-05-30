@@ -18,7 +18,7 @@ namespace VolleyballApp.Services.Navigation
 
         protected virtual Type FindPageForViewModel(Type viewModelType)
         {
-            var pageTypeName = viewModelType.AssemblyQualifiedName.Replace("ViewMode", "View");
+            var pageTypeName = viewModelType.AssemblyQualifiedName.Replace("ViewModel", "Page");
 
             return Type.GetType(pageTypeName) ?? throw new ArgumentException(pageTypeName + " не существует");
         }

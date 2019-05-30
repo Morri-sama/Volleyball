@@ -15,10 +15,6 @@ namespace VolleyballApp.Views
         public MainPagePage()
         {
             InitializeComponent();
-            BindingContext = new MainPageViewModel()
-            {
-                Navigation = Navigation
-            };
         }
     }
 }
