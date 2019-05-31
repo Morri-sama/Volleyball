@@ -1,13 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             mc:Ignorable="d"
-             x:Class="VolleyballApp.Views.Account.SignInPage">
+             x:Class="VolleyballApp.Views.Account.SignInView">
     <ContentPage.Content>
         <StackLayout Margin="15,200,15,15">
             <Label Text="Добро пожаловать!" HorizontalTextAlignment="Center" />
+            <Label Text="{Binding Result}" HorizontalTextAlignment="Center" />            
             <Entry Placeholder="Логин"
                    Text="{Binding UserName}"/>
             <Entry Placeholder="Пароль" 
@@ -23,7 +21,7 @@
                 <Button Text="Войти"
                         BackgroundColor="#2196F3" 
                         TextColor="White" 
-                        HorizontalOptions="Center">                  
+                        HorizontalOptions="Center">
                 </Button>
             </StackLayout>
         </StackLayout>

@@ -10,44 +10,42 @@ using Xamarin.Forms;
 
 namespace VolleyballApp.ViewModels.Account
 {
-    public class SignInViewModel : ViewModelBase
+    public class SignInViewModel : ViewModelBase, INotifyPropertyChanged
     {
+        private string _userName;
         public string UserName
         {
             get
             {
-                return LoginViewModel.UserName;
+                return _userName;
             }
             set
             {
-                if (LoginViewModel.UserName != value)
-                {
-                    LoginViewModel.UserName = value;
-                    //OnPropertyChanged("UserName");
-                }
+                SetPropertyAndRaise(ref _userName, value, "UserName");
             }
         }
 
+        private string _password;
         public string Password
         {
             get
             {
-                return LoginViewModel.Password;
+                return _password;
             }
             set
             {
-                if (LoginViewModel.Password != value)
-                {
-                    LoginViewModel.Password = value;
-                    //OnPropertyChanged("Password");
-                }
+                SetPropertyAndRaise(ref _password, value, "Password");
             }
         }
 
-        public LoginViewModel LoginViewModel { get; set; }
+        private bool _result;
+        public bool Result
+        {
+            get => _result;
+            set => SetPropertyAndRaise(ref _result, value, "Result");
+        }
 
         private readonly INavigationService _navigator;
-
         public ICommand SignInCommand;
 
         public SignInViewModel(INavigationService navigator)
@@ -58,13 +56,14 @@ namespace VolleyballApp.ViewModels.Account
 
         private void SignIn()
         {
-            WebApiClient.Login(LoginViewModel);
-        }
+            LoginViewModel loginViewModel = new LoginViewModel()
+            {
+                UserName = _userName,
+                Password = _password
+            };
 
-        protected void OnPropertyChanged(string propertyName)
-        {
-            //PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            _result = WebApiClient.Login(loginViewModel);
+            
         }
-
     }
 }

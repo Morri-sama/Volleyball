@@ -41,7 +41,7 @@ namespace VolleyballApp.Helpers
             }
         }
 
-        public static void Login(LoginViewModel model)
+        public static bool Login(LoginViewModel model)
         {
             HttpResponseMessage response = null;
 
@@ -53,10 +53,11 @@ namespace VolleyballApp.Helpers
                 if (response.IsSuccessStatusCode)
                 {
                     Application.Current.Properties["JwtToken"] = response.Content.ReadAsStringAsync().Result;
+                    return true;
                 }
                 else
                 {
-
+                    return false;
                 }
             }
         }

@@ -1,7 +1,10 @@
 ﻿using System;
+using VolleyballApp.Helpers;
 using VolleyballApp.Services.Navigation;
 using VolleyballApp.ViewModels;
+using VolleyballApp.ViewModels.Account;
 using VolleyballApp.Views;
+using VolleyballApp.Views.Account;
 using VolleyballApp.Views.Settings;
 using VolleyballApp.Views.Teams;
 using Xamarin.Forms;
@@ -11,22 +14,34 @@ namespace VolleyballApp
 {
     public partial class App : Application, IHaveMainPage
     {
+        private readonly INavigationService _navigator;
+
         public App()
         {
             InitializeComponent();
 
             Application.Current.Properties["apiUrl"] = @"http://192.168.42.151:5000/";
 
-            var navigator = new NavigationService(this, new ViewLocator());
+            MainPage = new SignInView();
 
-            var rootViewModel = new MainPageViewModel(navigator);
+            _navigator = new NavigationService(this, new ViewLocator());
 
-            navigator.PresentAsNavigatableMainPage(rootViewModel);
+            
+
+            if (WebApiClient.Validate())
+            {
+                _navigator.PresentAsNavigatableMainPage(new MainPageViewModel(_navigator));
+            }
+            else
+            {
+                _navigator.PresentAsNavigatableMainPage(new SignInViewModel(_navigator));
+            }
+
         }
 
         protected override void OnStart()
         {
-            // Handle when your app starts
+
         }
 
         protected override void OnSleep()

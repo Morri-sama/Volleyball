@@ -10,9 +10,9 @@ using Xamarin.Forms.Xaml;
 namespace VolleyballApp.Views.Account
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class SignUpPage : ContentPage
+    public partial class SignInView : ContentPage
     {
-        public SignUpPage()
+        public SignInView()
         {
             InitializeComponent();
         }

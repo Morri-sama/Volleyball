@@ -17,15 +17,6 @@ namespace VolleyballApp.ViewModels
         public MainPageViewModel(INavigationService navigator)
         {
             _navigator = navigator;
-
-            if (WebApiClient.Validate())
-            {
-
-            }
-            else
-            {
-                _navigator.NavigateTo(new SignInViewModel(_navigator));
-            }
         }
     }
 }

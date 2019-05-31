@@ -36,13 +36,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="Views\Account\SignInPage.xaml">
+    <EmbeddedResource Update="Views\Account\SignInView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\Account\SignUpPage.xaml">
+    <EmbeddedResource Update="Views\Account\SignUpView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\MainPagePage.xaml">
+    <EmbeddedResource Update="Views\MainPageView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Players\CreatePlayerPage.xaml">
@@ -67,6 +67,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Views\Account\SignUpView.xaml.cs">
+      <DependentUpon>SignUpView.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\MainPageView.xaml.cs">
+      <DependentUpon>MainPageView.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\Players\PlayerPage.xaml.cs">
       <DependentUpon>%(Filename)</DependentUpon>
     </Compile>
