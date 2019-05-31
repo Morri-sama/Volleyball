@@ -1,116 +1,48 @@
 ﻿using Models;
-using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Net.Http;
 using System.Text;
 using System.Windows.Input;
-using VolleyballApp.Helpers;
-using VolleyballApp.ViewModels.Players;
-using VolleyballApp.Views.Players;
+using VolleyballApp.Services.Navigation;
 using Xamarin.Forms;
 
 namespace VolleyballApp.ViewModels.Teams
 {
-    public class TeamViewModel : INotifyPropertyChanged
+    public class TeamViewModel : ViewModelBase, INotifyPropertyChanged
     {
-        public event PropertyChangedEventHandler PropertyChanged;
-        TeamsViewModel _teamsViewModel;
+        private readonly INavigationService _navigator;
 
-        public Team Team { get; private set; }
-        public PlayersViewModel PlayersViewModel { get; set; }
+        private int                 _id;
+        private string              _name;
+        private ICollection<Player> _players;
 
-        public ICommand DisplayPlayersCommand { get; protected set; }
+        public string Name { get => _name; set => Notify(ref _name, value, "Name"); }
 
-        public INavigation Navigation { get; set; }
+        public ICommand SaveCommand { get; protected set; }
 
-        public TeamViewModel()
+        public TeamViewModel(INavigationService navigator)
         {
-            Team = new Team();
-            DisplayPlayersCommand = new Command(DisplayPlayers);
+            _navigator = navigator;
+
+            SaveCommand = new Command(Save);
         }
 
-        public TeamViewModel(Team team)
+        public TeamViewModel(INavigationService navigator, Team team)
         {
-            Team = team;
-            PlayersViewModel = new PlayersViewModel(Team.Id) { Navigation=this.Navigation};
-            DisplayPlayersCommand = new Command(DisplayPlayers);
+            _navigator = navigator;
+
+            _id = team.Id;
+            _name = team.Name;
+            _players = team.Players;
+
+            SaveCommand = new Command(Save);
         }
 
-
-
-        public TeamsViewModel TeamsViewModel
+        private void Save()
         {
-            get
-            {
-                return _teamsViewModel;
-            }
-            set
-            {
-                if (_teamsViewModel != value)
-                {
-                    _teamsViewModel = value;
-                    OnPropertyChanged("TeamsViewModel");
-                }
-            }
-        }
-
-        private void DisplayPlayers()
-        {
-            Navigation.PushAsync(new PlayersPage(PlayersViewModel));
-        }
-
-        public List<PlayerViewModel> GetPlayerViewModels()
-        {
-            List<PlayerViewModel> vms = new List<PlayerViewModel>();
-            foreach (var player in WebApiClient.GetPlayers(Team.Id))
-            {
-                vms.Add(new PlayerViewModel(player));
-            }
-            return vms;
-        }
-
-        public int Id
-        {
-            get
-            {
-                return Team.Id;
-            }
-            set
-            {
-                if (Team.Id != value)
-                {
-                    Team.Id = value;
-                    OnPropertyChanged("Id");
-                }
-            }
 
         }
 
-        public string Name
-        {
-            get
-            {
-                return Team.Name;
-            }
-            set
-            {
-                if(Team.Name != value)
-                {
-                    Team.Name = value;
-                    OnPropertyChanged("Name");
-                }
-            }
-        }
-
-        protected void OnPropertyChanged(string propertyName)
-        {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-            }
-        }
     }
 }

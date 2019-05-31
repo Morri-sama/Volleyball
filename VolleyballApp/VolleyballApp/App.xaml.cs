@@ -20,8 +20,6 @@ namespace VolleyballApp
         {
             InitializeComponent();
 
-            Application.Current.Properties["apiUrl"] = @"http://192.168.42.151:5000/";
-
             MainPage = new SignInView();
 
             _navigator = new NavigationService(this, new ViewLocator());

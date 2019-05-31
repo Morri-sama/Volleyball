@@ -24,9 +24,10 @@ namespace VolleyballApp.Services.Navigation
         private INavigation Navigator => _presentationRoot.MainPage.Navigation;
 
 
+
         public async Task NavigateTo(ViewModelBase viewModel)
         {
-            var page = _viewLocator.CreateAndBindPageFor(viewModel);
+            var page = _viewLocator.CreateAndBindPage(viewModel);
 
             await viewModel.BeforeFirstShown();
 
@@ -54,9 +55,9 @@ namespace VolleyballApp.Services.Navigation
             }
         }
 
-        public void PresentAsMaingPage(ViewModelBase viewModel)
+        public void PresentAsMainPage(ViewModelBase viewModel)
         {
-            var page = _viewLocator.CreateAndBindPageFor(viewModel);
+            var page = _viewLocator.CreateAndBindPage(viewModel);
 
             IEnumerable<ViewModelBase> viewModelsToDismiss = FindViewModelsToDismss(_presentationRoot.MainPage);
 
@@ -88,7 +89,7 @@ namespace VolleyballApp.Services.Navigation
 
         public void PresentAsNavigatableMainPage(ViewModelBase viewModel)
         {
-            var page = _viewLocator.CreateAndBindPageFor(viewModel);
+            var page = _viewLocator.CreateAndBindPage(viewModel);
 
             NavigationPage newNavigationPage = new NavigationPage(page);
 

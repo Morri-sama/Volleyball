@@ -8,7 +8,7 @@ namespace VolleyballApp.Services.Navigation
 {
     public interface INavigationService
     {
-        void PresentAsMaingPage(ViewModelBase viewModel);
+        void PresentAsMainPage(ViewModelBase viewModel);
 
         void PresentAsNavigatableMainPage(ViewModelBase viewModel);
 

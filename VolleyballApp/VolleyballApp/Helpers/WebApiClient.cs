@@ -12,6 +12,7 @@ namespace VolleyballApp.Helpers
     public class WebApiClient
     {
         public static string ApiUrl { get; } = Application.Current.Properties["apiUrl"] as string;
+        private static string _jwtToken = Application.Current.Properties["JwtToken"] as string;
 
         public WebApiClient()
         {

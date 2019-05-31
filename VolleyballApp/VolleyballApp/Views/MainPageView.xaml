@@ -7,6 +7,8 @@
             <Label Text="Welcome to Xamarin.Forms!"
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" />
+            <Button Text="Команды"
+                    Command="{Binding TeamsCommand}"></Button>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

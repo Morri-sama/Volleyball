@@ -20,7 +20,7 @@ namespace VolleyballApp.ViewModels
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected bool SetPropertyAndRaise<T>(ref T field, T newValue, [CallerMemberName] string propertyName = null)
+        protected bool Notify<T>(ref T field, T newValue, [CallerMemberName] string propertyName = null)
         {
             if(EqualityComparer<T>.Default.Equals(field, newValue))
             {

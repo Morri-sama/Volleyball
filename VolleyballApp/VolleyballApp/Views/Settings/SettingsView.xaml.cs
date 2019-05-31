@@ -10,9 +10,9 @@ using Xamarin.Forms.Xaml;
 namespace VolleyballApp.Views.Settings
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class SettingsPage : ContentPage
+    public partial class SettingsView : ContentPage
     {
-        public SettingsPage()
+        public SettingsView()
         {
             InitializeComponent();
         }

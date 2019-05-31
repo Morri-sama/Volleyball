@@ -7,19 +7,31 @@
             <Label Text="Регистрация" 
                    HorizontalTextAlignment="Center"
                    FontSize="Large"/>
-            <Entry Placeholder="Имя пользователя" />
-            <Entry Placeholder="Фамилия" />
-            <Entry Placeholder="Имя" />
-            <Entry Placeholder="Отчество" />
+            <Entry Placeholder="Имя пользователя" 
+                   Text="{Binding UserName}"/>
+            <Entry Placeholder="Фамилия" 
+                   Text="{Binding LastName}"/>
+            <Entry Placeholder="Имя" 
+                   Text="{Binding FirstName}"/>
+            <Entry Placeholder="Отчество" 
+                   Text="{Binding MiddleName}"/>
             <Entry Placeholder="Пароль" 
-                   IsPassword="True"/>
+                   IsPassword="True"
+                   Text="{Binding Password}"/>
             <StackLayout Orientation="Horizontal">
-                <Button x:Name="SignInButton"
-                        Text="Зарегестрироваться"
+                <Button Text="Назад" 
+                        BackgroundColor="Transparent"
+                        BorderColor="Transparent"
+                        TextColor="Black"
+                        HorizontalOptions="EndAndExpand"
+                        Command="{Binding BackCommand}">
+                </Button>
+                <Button Text="Зарегистрироваться"
                         BackgroundColor="#2196F3" 
                         TextColor="White" 
                         HorizontalOptions="EndAndExpand"
-                        Padding="10,10,10,10">
+                        Padding="10,10,10,10"
+                        Command="{Binding SignUpCommand}">
                 </Button>
             </StackLayout>
         </StackLayout>

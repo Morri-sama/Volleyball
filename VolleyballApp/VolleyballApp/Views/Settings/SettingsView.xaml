@@ -1,12 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="VolleyballApp.Views.Settings.SettingsPage"
+             x:Class="VolleyballApp.Views.Settings.SettingsView"
              xmlns:viewModels="clr-namespace:VolleyballApp.ViewModels.Settings"
              Title="Настройки">
-    <ContentPage.BindingContext>
-        <viewModels:SettingsViewModel/>
-    </ContentPage.BindingContext>
     <ContentPage.Content>
         <StackLayout>
             <Label Text="URL API"/>

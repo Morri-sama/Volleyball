@@ -3,26 +3,29 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
 using System.Windows.Input;
+using VolleyballApp.Services.Navigation;
 using Xamarin.Forms;
 
 namespace VolleyballApp.ViewModels.Settings
 {
-    public class SettingsViewModel : INotifyPropertyChanged
+    public class SettingsViewModel : ViewModelBase, INotifyPropertyChanged
     {
-        public event PropertyChangedEventHandler PropertyChanged;
+        private readonly INavigationService _navigator;
+
+        private string _apiUrl;
+
+        public string ApiUrl { get => _apiUrl; set => Notify(ref _apiUrl, value, "ApiUrl"); }
 
         public ICommand SaveSettingsCommand { get; protected set; }
         public ICommand BackCommand { get; protected set; }
 
-        public INavigation Navigation { get; set; }
-
-        public string ApiUrl { get; protected set; }
-
-        public SettingsViewModel()
+        public SettingsViewModel(INavigationService navigator)
         {
-            SaveSettingsCommand = new Command(SaveSettings);
+            _navigator = navigator;
+            _apiUrl = Application.Current.Properties["apiUrl"] as string;
 
-            ApiUrl = Application.Current.Properties["apiUrl"] as string;
+            SaveSettingsCommand = new Command(SaveSettings);
+            BackCommand = new Command(Back);
         }
 
         private void SaveSettings()
@@ -30,11 +33,9 @@ namespace VolleyballApp.ViewModels.Settings
             Application.Current.Properties["apiUrl"] = ApiUrl;
         }
 
-        protected void OnPropertyChanged(string propertyName)
+        private void Back()
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            _navigator.NavigateBack();
         }
-
-
     }
 }

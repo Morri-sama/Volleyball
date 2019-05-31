@@ -9,35 +9,36 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using VolleyballApp.Helpers;
+using VolleyballApp.Services.Navigation;
 using VolleyballApp.Views;
 using VolleyballApp.Views.Teams;
 using Xamarin.Forms;
 
 namespace VolleyballApp.ViewModels.Teams
 {
-    public class TeamsViewModel : INotifyPropertyChanged
+    public class TeamsViewModel : ViewModelBase, INotifyPropertyChanged
     {
-        public event PropertyChangedEventHandler PropertyChanged;
+        private readonly INavigationService _navigator;
 
         public ObservableCollection<TeamViewModel> Teams { get; set; }
 
         public ICommand RefreshTeamsCommand { get; protected set; }
         public ICommand CreateTeamCommand { get; protected set; }
 
-        public ICommand SaveTeamCommand { get; protected set; }
         public ICommand DeleteTeamCommand { get; protected set; }
         public ICommand BackCommand { get; protected set; }
 
-        TeamViewModel selectedTeam;
+        //TeamViewModel selectedTeam;
 
         public INavigation Navigation { get; set; }
 
-        public TeamsViewModel()
+        public TeamsViewModel(INavigationService navigator)
         {
+            _navigator = navigator;
+
             Teams = new ObservableCollection<TeamViewModel>(GetTeamViewModels());
             RefreshTeamsCommand = new Command(RefreshTeams);
             CreateTeamCommand = new Command(CreateTeam);
-            SaveTeamCommand = new Command(SaveTeam);
             DeleteTeamCommand = new Command(DeleteTeam);
             BackCommand = new Command(Back);
         }
@@ -47,7 +48,7 @@ namespace VolleyballApp.ViewModels.Teams
             List<TeamViewModel> vms = new List<TeamViewModel>();
             foreach (var team in WebApiClient.GetTeams())
             {
-                vms.Add(new TeamViewModel(team) { Navigation = this.Navigation});
+                vms.Add(new TeamViewModel(_navigator, team));
             }
             return vms;
         }
@@ -60,18 +61,7 @@ namespace VolleyballApp.ViewModels.Teams
 
         private void CreateTeam()
         {
-            Navigation.PushAsync(new TeamPage(new TeamViewModel() { TeamsViewModel = this, Navigation = Navigation }));
-        }
-
-        private void SaveTeam(object teamObject)
-        {
-            TeamViewModel team = teamObject as TeamViewModel;
-            if(team!= null)
-            {
-                WebApiClient.AddTeam(team.Team);
-                Teams.Add(team);
-            }
-            Back();
+            //Navigation.PushAsync(new TeamPage(new TeamViewModel() { TeamsViewModel = this, Navigation = Navigation }));
         }
 
         private void DeleteTeam()
@@ -84,26 +74,20 @@ namespace VolleyballApp.ViewModels.Teams
             Navigation.PopAsync();
         }
 
-        public TeamViewModel SelectedTeam
-        {
-            get { return selectedTeam; }
-            set
-            {
-                if (selectedTeam != value)
-                {
-                    TeamViewModel tempTeam = value;
-                    tempTeam.Navigation = this.Navigation;
-                    selectedTeam = null;
-                    OnPropertyChanged("SelectedTeam");
-                    Navigation.PushAsync(new TeamPage(tempTeam));
-                }
-            }
-        }
-
-        protected void OnPropertyChanged(string propertyName)
-        {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-        }
+        //public TeamViewModel SelectedTeam
+        //{
+        //    get { return selectedTeam; }
+        //    set
+        //    {
+        //        if (selectedTeam != value)
+        //        {
+        //            TeamViewModel tempTeam = value;
+        //            tempTeam.Navigation = this.Navigation;
+        //            selectedTeam = null;
+        //            OnPropertyChanged("SelectedTeam");
+        //            Navigation.PushAsync(new TeamPage(tempTeam));
+        //        }
+        //    }
+        //}
     }
 }

@@ -8,6 +8,7 @@ namespace VolleyballApp.Services.Navigation
 {
     public interface IViewLocator
     {
-        Page CreateAndBindPageFor<TViewModel>(TViewModel viewModel) where TViewModel : ViewModelBase;
+        Page CreateAndBindPage<TViewModel>(TViewModel viewModel) where TViewModel : ViewModelBase;
+        Page CreateAndBindPage<TViewModel>(TViewModel viewModel, string viewName) where TViewModel : ViewModelBase;
     }
 }
