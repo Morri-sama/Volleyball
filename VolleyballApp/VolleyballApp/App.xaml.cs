@@ -3,6 +3,7 @@ using VolleyballApp.Helpers;
 using VolleyballApp.Services.Navigation;
 using VolleyballApp.ViewModels;
 using VolleyballApp.ViewModels.Account;
+using VolleyballApp.ViewModels.Teams;
 using VolleyballApp.Views;
 using VolleyballApp.Views.Account;
 using VolleyballApp.Views.Settings;
@@ -24,16 +25,19 @@ namespace VolleyballApp
 
             _navigator = new NavigationService(this, new ViewLocator());
 
-            
+            Application.Current.Properties["ApiUrl"] = "http://192.168.42.151:5000/";
 
-            if (WebApiClient.Validate())
-            {
-                _navigator.PresentAsNavigatableMainPage(new MainPageViewModel(_navigator));
-            }
-            else
-            {
-                _navigator.PresentAsNavigatableMainPage(new SignInViewModel(_navigator));
-            }
+
+            //if (WebApiClient.Validate())
+            //{
+            //    _navigator.PresentAsNavigatableMainPage(new MainPageViewModel(_navigator));
+            //}
+            //else
+            //{
+            //    _navigator.PresentAsNavigatableMainPage(new SignInViewModel(_navigator));
+            //}
+
+            _navigator.PresentAsNavigatableMainPage(new TeamsViewModel(_navigator));
 
         }
 

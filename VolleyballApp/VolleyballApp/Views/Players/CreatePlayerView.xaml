@@ -1,10 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             mc:Ignorable="d"
-             x:Class="VolleyballApp.Views.Players.CreatePlayerPage">
+             x:Class="VolleyballApp.Views.Players.CreatePlayerView">
     <ContentPage.Content>
         <StackLayout>
             <Entry Text="{Binding Name}" 
@@ -14,13 +11,15 @@
             <Picker Title="Позиция"
                     ItemsSource="{Binding Positions}"
                     ItemDisplayBinding="{Binding Path='Name'}"
-                    SelectedItem="{Binding Position, Mode=OneWayToSource}"/>
-            <Button Text="Назад" 
-                    Command="{Binding PlayersViewModel.BackCommand}" 
-                    CommandParameter="{Binding}"/>
+                    SelectedItem="{Binding Position}"/>
+            <Button Text="Отмена" 
+                    Command="{Binding CancelCommand}"/>
+
+
             <Button Text="Добавить" 
-                    Command="{Binding PlayersViewModel.AddPlayerCommand}" 
-                    CommandParameter="{Binding}"/>
+                    Command="{Binding AddPlayerCommand}"/>
+
+
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

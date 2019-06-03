@@ -34,6 +34,33 @@ namespace VolleyballApp.Services.Navigation
             await Navigator.PushAsync(page);
         }
 
+        public async Task NavigateTo(ViewModelBase viewModel, string viewName)
+        {
+            var page = _viewLocator.CreateAndBindPage(viewModel, viewName);
+
+            await viewModel.BeforeFirstShown();
+
+            await Navigator.PushAsync(page);
+        }
+
+        public async Task OpenModal(ViewModelBase viewModel, string viewName)
+        {
+            var page = _viewLocator.CreateAndBindPage(viewModel, viewName);
+
+            await viewModel.BeforeFirstShown();
+
+            await Navigator.PushModalAsync(page, true);
+        }
+
+        public async Task PopModal()
+        {
+            var dismissing = Navigator.ModalStack.Last().BindingContext as ViewModelBase;
+
+            await Navigator.PopModalAsync();
+
+            dismissing?.AfterDismissed();
+        }
+
         public async Task NavigateBack()
         {
             var dismissing = Navigator.NavigationStack.Last().BindingContext as ViewModelBase;

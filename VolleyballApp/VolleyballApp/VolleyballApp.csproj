@@ -49,23 +49,23 @@
     <EmbeddedResource Update="Views\MainPageView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\Players\CreatePlayerPage.xaml">
+    <EmbeddedResource Update="Views\Players\CreatePlayerView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\Players\PlayerPage.xaml">
+    <EmbeddedResource Update="Views\Players\PlayerView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\Players\PlayersPage.xaml">
+    <EmbeddedResource Update="Views\Players\PlayersView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Settings\SettingsView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\Teams\TeamPage.xaml">
+    <EmbeddedResource Update="Views\Teams\TeamView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\Teams\TeamsPage.xaml">
+    <EmbeddedResource Update="Views\Teams\TeamsView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>
@@ -77,11 +77,20 @@
     <Compile Update="Views\MainPageView.xaml.cs">
       <DependentUpon>MainPageView.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Views\Players\PlayerPage.xaml.cs">
-      <DependentUpon>%(Filename)</DependentUpon>
+    <Compile Update="Views\Players\PlayersView.xaml.cs">
+      <DependentUpon>PlayersView.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Players\PlayerView.xaml.cs">
+      <DependentUpon>PlayerView.xaml</DependentUpon>
     </Compile>
     <Compile Update="Views\Settings\SettingsView.xaml.cs">
       <DependentUpon>SettingsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Teams\TeamView.xaml.cs">
+      <DependentUpon>TeamView.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Teams\TeamsView.xaml.cs">
+      <DependentUpon>TeamsView.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
 

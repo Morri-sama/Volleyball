@@ -22,7 +22,7 @@ namespace VolleyballApp.ViewModels.Settings
         public SettingsViewModel(INavigationService navigator)
         {
             _navigator = navigator;
-            _apiUrl = Application.Current.Properties["apiUrl"] as string;
+            _apiUrl = Application.Current.Properties.ContainsKey("ApiUrl") ? Application.Current.Properties["ApiUrl"] as string : string.Empty;
 
             SaveSettingsCommand = new Command(SaveSettings);
             BackCommand = new Command(Back);
@@ -30,7 +30,7 @@ namespace VolleyballApp.ViewModels.Settings
 
         private void SaveSettings()
         {
-            Application.Current.Properties["apiUrl"] = ApiUrl;
+            Application.Current.Properties["ApiUrl"] = _apiUrl;
         }
 
         private void Back()

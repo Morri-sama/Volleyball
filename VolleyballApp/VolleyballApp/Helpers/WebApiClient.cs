@@ -11,8 +11,8 @@ namespace VolleyballApp.Helpers
 {
     public class WebApiClient
     {
-        public static string ApiUrl { get; } = Application.Current.Properties["apiUrl"] as string;
-        private static string _jwtToken = Application.Current.Properties["JwtToken"] as string;
+        public static string ApiUrl { get; } = Application.Current.Properties.ContainsKey("ApiUrl") ? Application.Current.Properties["ApiUrl"] as string : string.Empty;
+        private static string _jwtToken = Application.Current.Properties.ContainsKey("JwtToken") ? Application.Current.Properties["JwtToken"] as string : string.Empty;
 
         public WebApiClient()
         {
@@ -21,15 +21,17 @@ namespace VolleyballApp.Helpers
 
         public static bool Validate()
         {
-            if(!Application.Current.Properties.ContainsKey("JwtToken"))
+            if (!Uri.TryCreate(ApiUrl + "api/account/validate", UriKind.Absolute, out Uri uri))
             {
                 return false;
             }
 
-                using (var httpClient = new HttpClient())
+
+            using (var httpClient = new HttpClient())
             {
-                httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", Application.Current.Properties["JwtToken"] as string);
-                HttpResponseMessage response = httpClient.GetAsync(new Uri(ApiUrl + "api/account/validate")).Result;
+                httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", _jwtToken);
+
+                HttpResponseMessage response = httpClient.GetAsync(uri).Result;
 
                 if (response.IsSuccessStatusCode)
                 {
@@ -141,14 +143,14 @@ namespace VolleyballApp.Helpers
         public static List<Team> GetTeams()
         {
             HttpResponseMessage response = null;
-            List<Team> teams = null;
+            List<Team> teams = new List<Team>();
             using (var httpClient = new HttpClient())
             {
                 response = httpClient.GetAsync(new Uri(ApiUrl + $"api/teams")).Result;
 
                 if (response.IsSuccessStatusCode)
                 {
-                    teams = JsonConvert.DeserializeObject<List<Team>>(response.Content.ReadAsStringAsync().Result);
+                    teams.AddRange(JsonConvert.DeserializeObject<List<Team>>(response.Content.ReadAsStringAsync().Result));
                 }
             }
 

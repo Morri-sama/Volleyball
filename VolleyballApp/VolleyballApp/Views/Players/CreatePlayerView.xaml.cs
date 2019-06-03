@@ -3,22 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using VolleyballApp.ViewModels.Players;
+
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace VolleyballApp.Views.Players
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class CreatePlayerPage : ContentPage
+    public partial class CreatePlayerView : ContentPage
     {
-        public PlayerViewModel ViewModel { get; set; }
-        public CreatePlayerPage(PlayerViewModel vm)
+        public CreatePlayerView()
         {
             InitializeComponent();
-
-            ViewModel = vm;
-            this.BindingContext = ViewModel;
         }
     }
 }

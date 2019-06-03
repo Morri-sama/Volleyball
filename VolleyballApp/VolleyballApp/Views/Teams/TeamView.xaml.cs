@@ -11,15 +11,11 @@ using Xamarin.Forms.Xaml;
 namespace VolleyballApp.Views.Teams
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class TeamPage : ContentPage
+    public partial class TeamView : ContentPage
     {
-        public TeamViewModel ViewModel { get; private set; }
-        public TeamPage(TeamViewModel vm)
+        public TeamView()
         {
             InitializeComponent();
-
-            ViewModel = vm;
-            this.BindingContext = ViewModel;
         }
     }
 }

@@ -10,13 +10,11 @@ using Xamarin.Forms.Xaml;
 namespace VolleyballApp.Views.Players
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class PlayersPage : ContentPage
+    public partial class PlayerView : ContentPage
     {
-        public PlayersPage(PlayersViewModel vm)
+        public PlayerView()
         {
             InitializeComponent();
-            vm.Navigation = this.Navigation;
-            BindingContext = vm;
         }
     }
 }

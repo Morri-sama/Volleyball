@@ -14,6 +14,12 @@ namespace VolleyballApp.Services.Navigation
 
         Task NavigateTo(ViewModelBase viewModel);
 
+        Task NavigateTo(ViewModelBase viewModel, string viewName);
+
+        Task OpenModal(ViewModelBase viewModel, string viewName);
+
+        Task PopModal();
+
         Task NavigateBack();
 
         Task NavigateBackToRoot();

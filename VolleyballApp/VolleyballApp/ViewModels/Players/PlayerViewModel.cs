@@ -1,175 +1,51 @@
 ﻿using Models;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Input;
 using VolleyballApp.Helpers;
+using VolleyballApp.Services.Navigation;
+using Xamarin.Forms;
 
 namespace VolleyballApp.ViewModels.Players
 {
-    public class PlayerViewModel : INotifyPropertyChanged
+    public class PlayerViewModel : ViewModelBase, INotifyPropertyChanged
     {
-        public event PropertyChangedEventHandler PropertyChanged;
+        private readonly INavigationService _navigator;
+        private readonly ObservableCollection<PlayerViewModel> _playerViewModels;
 
-        public Player Player { get; private set; }
-        PlayersViewModel _playersViewModel;
+        private string      _name;
+        private int         _positionId;
+        private Position    _position;
+        private int         _squadNumber;
 
-        public PlayerViewModel()
-        {
-            Player = new Player();
-            if (PlayersViewModel != null)
-            {
-                Player.TeamId = PlayersViewModel.TeamId;
-            }
-        }
-
-        public PlayerViewModel(Player player)
-        {
-            Player = player;
-            Player.Position = WebApiClient.GetPosition(Player.PositionId);
-            if(PlayersViewModel!= null)
-            {
-
-            }
-        }
-
-        public PlayersViewModel PlayersViewModel
-        {
-            get
-            {
-                return _playersViewModel;
-            }
-            set
-            {
-                if (_playersViewModel != value)
-                {
-                    _playersViewModel = value;
-                    OnPropertyChanged("PlayersViewModel");
-                }
-            }
-        }
-
-        public int Id
-        {
-            get
-            {
-                return Player.Id;
-            }
-            set
-            {
-                if (Player.Id != value)
-                {
-                    Player.Id = value;
-                    OnPropertyChanged("Id");
-                }
-            }
-        }
-
-        public string Name
-        {
-            get
-            {
-                return Player.Name;
-            }
-            set
-            {
-                if (Player.Name != value)
-                {
-                    Player.Name = value;
-                    OnPropertyChanged("Name");
-                }
-            }
-        }
-
-        public int SquadNumber
-        {
-            get
-            {
-                return Player.SquadNumber;
-            }
-            set
-            {
-                if (Player.SquadNumber != value)
-                {
-                    Player.SquadNumber = value;
-                    OnPropertyChanged("SquadNumber");
-                }
-            }
-        }
-
-        public int PositionId
-        {
-            get
-            {
-                return Player.PositionId;
-            }
-            set
-            {
-                if (Player.PositionId != value)
-                {
-                    Player.PositionId = value;
-                    OnPropertyChanged("PositionId");
-                }
-            }
-        }
-
-        public Position Position
-        {
-            get
-            {
-                return Player.Position;
-            }
-            set
-            {
-                if (Player.Position != Position)
-                {
-                    Player.Position = value;
-                    PositionId = value.Id;
-                    OnPropertyChanged("Position");
-                }
-            }
-        }
-
-        public int TeamId
-        {
-            get
-            {
-                return Player.TeamId;
-            }
-            set
-            {
-                if (Player.TeamId != TeamId)
-                {
-                    Player.TeamId = value;
-                    OnPropertyChanged("TeamId");
-                }
-            }
-        }
-
+        public string Name { get => _name; set => Notify(ref _name, value, "Name"); }
+        public Position Position { get => _position; set { Notify(ref _position, value, "Position"); _positionId = value.Id; } }
         public List<Position> Positions { get; } = WebApiClient.GetPositions();
+        public int SquadNumber { get => _squadNumber; set => Notify(ref _squadNumber, value, "SquadNumber"); }
 
-        public Team Team
+        public ICommand AddPlayerCommand { get; protected set; }
+        public ICommand CancelCommand { get; protected set; }
+
+        public PlayerViewModel(INavigationService navigator)
         {
-            get
-            {
-                return Player.Team;
-            }
-            set
-            {
-                if (Player.Team != Team)
-                {
-                    Player.Team = value;
-                    OnPropertyChanged("Team");
-                }
-            }
+            _navigator = navigator;
+
+            AddPlayerCommand = new Command(AddPlayer);
+            CancelCommand = new Command(Cancel);
         }
 
-        protected void OnPropertyChanged(string propertyName)
+        private void AddPlayer()
         {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-            }
+            _navigator.NavigateBack();
+        }
+
+        private void Cancel()
+        {
+            _navigator.PopModal();
         }
     }
 }
