@@ -17,13 +17,11 @@ namespace VolleyballApp.ViewModels.Players
 {
     public class PlayersViewModel : ViewModelBase, INotifyPropertyChanged
     {
-        private event NotifyCollectionChangedEventHandler CollectionChangedEvent 
-
         private readonly INavigationService _navigator;
 
         private TeamViewModel _team;
 
-        public ObservableCollection<PlayerViewModel> Players { get; set; }
+        public ObservableCollection<Player> Players { get; set; }
 
         public ICommand CreatePlayerCommand { get; protected set; }
         public ICommand AddPlayerCommand { get; protected set; }
@@ -34,7 +32,7 @@ namespace VolleyballApp.ViewModels.Players
         public PlayersViewModel(INavigationService navigator)
         {
             _navigator = navigator;
-            Players = new ObservableCollection<PlayerViewModel>();
+            Players = new ObservableCollection<Player>();
 
             AddPlayerCommand = new Command(AddPlayer);
             BackCommand = new Command(Back);
@@ -47,9 +45,8 @@ namespace VolleyballApp.ViewModels.Players
 
         private void AddPlayer()
         {
-            var playerViewModel = new PlayerViewModel(_navigator);
+            var playerViewModel = new PlayerViewModel(_navigator, this);
             _navigator.OpenModal(playerViewModel, "VolleyballApp.Views.Players.CreatePlayerView");
-            Players.Add(playerViewModel);
         }
 
         private void Back()

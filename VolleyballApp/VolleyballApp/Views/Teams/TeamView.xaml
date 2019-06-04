@@ -27,7 +27,7 @@
             </ListView>
 
             <Button Text="Игроки" Command="{Binding AddPlayersCommand}" CommandParameter="{Binding}"></Button>
-            <Button Text="Сохранить" Command="{Binding TeamsViewModel.SaveTeamCommand}" CommandParameter="{Binding}"></Button>
+            <Button Text="Сохранить" Command="{Binding SaveCommand}" CommandParameter="{Binding}"></Button>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

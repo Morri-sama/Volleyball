@@ -43,7 +43,15 @@ namespace VolleyballApp.ViewModels.Teams
 
         private void Save()
         {
+            Team team = new Team
+            {
+                Name = _name,
+                Players = new List<Player>()
+            };
+            team.Players.AddRange(Players.Players);
 
+
+            WebApiClient.AddTeam(team);
         }
 
         private void AddPlayers()

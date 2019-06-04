@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Models
 {
-    public abstract class Action
+    public abstract class ActionBase
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

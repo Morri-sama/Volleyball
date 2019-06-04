@@ -16,7 +16,7 @@ namespace Models
         public int HomeTeamScore { get; set; }
         public int AwayTeamScore { get; set; }
 
-        public ICollection<Action> Actions { get; set; }
+        public ICollection<ActionBase> Actions { get; set; }
 
 
     }

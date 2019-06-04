@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Models
 {
-    public class Receive : Action
+    public class Receive : ActionBase
     {
         /// <summary>
         /// Возможные варианты: "Позитивный", "Негативный".

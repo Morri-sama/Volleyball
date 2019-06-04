@@ -28,8 +28,6 @@ namespace VolleyballApp.ViewModels.Teams
         public ICommand DeleteTeamCommand { get; protected set; }
         public ICommand BackCommand { get; protected set; }
 
-        public INavigation Navigation { get; set; }
-
         public TeamsViewModel(INavigationService navigator)
         {
             _navigator = navigator;
@@ -69,7 +67,7 @@ namespace VolleyballApp.ViewModels.Teams
 
         private void Back()
         {
-            Navigation.PopAsync();
+            
         }
 
         //public TeamViewModel SelectedTeam

@@ -10,7 +10,7 @@ namespace WebApi.Data.DbContexts
 {
     public class WebApiDbContext : IdentityDbContext<User, IdentityRole<int>, int>
     {
-        public DbSet<Action> Actions { get; set; }
+        public DbSet<ActionBase> Actions { get; set; }
         public DbSet<Serve> Serves { get; set; }
         public DbSet<Receive> Receives { get; set; }
         public DbSet<Player> Players { get; set; }

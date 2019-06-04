@@ -15,17 +15,19 @@ namespace VolleyballApp.ViewModels.Players
     public class PlayerViewModel : ViewModelBase, INotifyPropertyChanged
     {
         private readonly INavigationService _navigator;
-        private readonly ObservableCollection<PlayerViewModel> _playerViewModels;
+        private readonly PlayersViewModel _playersViewModel;
 
-        private string      _name;
-        private int         _positionId;
-        private Position    _position;
-        private int         _squadNumber;
+        private string _name;
+        private int _positionId;
+        private Position _position;
+        private int _squadNumber;
 
         public string Name { get => _name; set => Notify(ref _name, value, "Name"); }
+        public int SquadNumber { get => _squadNumber; set => Notify(ref _squadNumber, value, "SquadNumber"); }
         public Position Position { get => _position; set { Notify(ref _position, value, "Position"); _positionId = value.Id; } }
         public List<Position> Positions { get; } = WebApiClient.GetPositions();
-        public int SquadNumber { get => _squadNumber; set => Notify(ref _squadNumber, value, "SquadNumber"); }
+
+        public Player Player { get; private set; }
 
         public ICommand AddPlayerCommand { get; protected set; }
         public ICommand CancelCommand { get; protected set; }
@@ -38,9 +40,22 @@ namespace VolleyballApp.ViewModels.Players
             CancelCommand = new Command(Cancel);
         }
 
+        public PlayerViewModel(INavigationService navigator, PlayersViewModel playersViewModel) : this(navigator)
+        {
+            _playersViewModel = playersViewModel;
+        }
+
         private void AddPlayer()
         {
-            _navigator.NavigateBack();
+            Player = new Player()
+            {
+                Name = _name,
+                PositionId = _positionId,
+                SquadNumber = _squadNumber
+            };
+
+            _playersViewModel.Players.Add(Player);
+            _navigator.PopModal();
         }
 
         private void Cancel()
