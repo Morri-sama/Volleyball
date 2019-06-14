@@ -28,16 +28,16 @@ namespace VolleyballApp
             Application.Current.Properties["ApiUrl"] = "http://192.168.42.151:5000/";
 
 
-            //if (WebApiClient.Validate())
-            //{
-            //    _navigator.PresentAsNavigatableMainPage(new MainPageViewModel(_navigator));
-            //}
-            //else
-            //{
-            //    _navigator.PresentAsNavigatableMainPage(new SignInViewModel(_navigator));
-            //}
+            if (WebApiClient.Validate())
+            {
+                _navigator.PresentAsNavigatableMainPage(new MainPageViewModel(_navigator));
+            }
+            else
+            {
+                _navigator.PresentAsNavigatableMainPage(new SignInViewModel(_navigator));
+            }
 
-            _navigator.PresentAsNavigatableMainPage(new TeamsViewModel(_navigator));
+            //_navigator.PresentAsNavigatableMainPage(new TeamsViewModel(_navigator));
 
         }
 

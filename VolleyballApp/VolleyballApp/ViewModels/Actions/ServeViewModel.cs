@@ -11,7 +11,7 @@ namespace VolleyballApp.ViewModels.Actions
         private readonly INavigationService _navigator;
         private readonly ActionsViewModel _actionsViewModel;
 
-        private string _result;
-        private
+        //private string _result;
+        //private
     }
 }

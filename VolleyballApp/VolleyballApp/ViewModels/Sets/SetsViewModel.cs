@@ -14,7 +14,7 @@ namespace VolleyballApp.ViewModels.Sets
     {
         private readonly INavigationService _navigator;
 
-        public ObservableCollection<ActionBase> Actions { get; set; };
+        public ObservableCollection<ActionBase> Actions { get; set; }
 
         public ICommand CreateActionCommand { get; set; }
 
