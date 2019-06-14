@@ -7,6 +7,8 @@
             <Label Text="Название команды"/>
             <Entry Text="{Binding Name}"/>
 
+            
+            
             <ListView ItemsSource="{Binding Players}"
                       SelectedItem="{Binding SelectedTeam, Mode=TwoWay}"
                       HasUnevenRows="True"

@@ -6,18 +6,20 @@ using System.Text;
 
 namespace Models
 {
-    public class Rally
+    public class Rally : ActionBase
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
+        /// <summary>
+        /// Возможные варианты: "Выиграл", "Ввёл", "Проиграл".
+        /// </summary>
+        public override string Result { get; set; }
 
-        public int Index { get; set; }
+        public override string Name { get; set; }
+        public override string Description { get; set; }
+
         public int HomeTeamScore { get; set; }
         public int AwayTeamScore { get; set; }
 
         public ICollection<ActionBase> Actions { get; set; }
-
 
     }
 }

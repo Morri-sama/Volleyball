@@ -4,11 +4,17 @@
              x:Class="VolleyballApp.Views.MainPageView">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
             <Button Text="Команды"
                     Command="{Binding TeamsCommand}"></Button>
+            <Button Text="Игроки"
+                    Command="{Binding TeamsCommand}"></Button>
+            <Button Text="Матчи"
+                    Command="{Binding TeamsCommand}"></Button>
+            <Button Text="Команды"
+                    Command="{Binding TeamsCommand}"></Button>
+            <Button Text="Настройки"
+                    Command="{Binding TeamsCommand}"></Button>
         </StackLayout>
+        
     </ContentPage.Content>
 </ContentPage>

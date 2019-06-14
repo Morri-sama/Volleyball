@@ -50,8 +50,11 @@ namespace VolleyballApp.ViewModels.Teams
             };
             team.Players.AddRange(Players.Players);
 
-
             WebApiClient.AddTeam(team);
+
+            Application.Current.MainPage.DisplayAlert("Успех", "Команда создана", "Ок");
+
+            _navigator.NavigateBack();
         }
 
         private void AddPlayers()

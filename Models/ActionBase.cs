@@ -14,6 +14,9 @@ namespace Models
 
         public abstract string Result { get; set; }
 
+        public abstract string Name { get; set; }
+        public abstract string Description { get; set; }
+
         public int Index { get; set; }
 
         [ForeignKey("Rally")]

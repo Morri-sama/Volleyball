@@ -50,7 +50,7 @@ namespace VolleyballApp.ViewModels.Account
             }
             else
             {
-                Application.Current.MainPage.DisplayAlert("Ошибка", "Ошибка входа", "Похуй");
+                Application.Current.MainPage.DisplayAlert("Ошибка", "Ошибка входа", "Ок");
             }
         }
 
