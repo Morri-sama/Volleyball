@@ -15,5 +15,7 @@ namespace Models
         [ForeignKey("Player")]
         public int? PlayerId { get; set; }
         public Player Player { get; set; }
+        public override string Name { get; set; }
+        public override string Description { get; set; }
     }
 }

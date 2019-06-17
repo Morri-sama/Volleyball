@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="VolleyballApp.Views.Actions.ActionsView">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="0 12 P3"></Label>
+            <Label Text="0  7 P3"></Label>
+            <Button Text="Успешная подача"
+                    BackgroundColor="Blue"
+                    Command="{Binding TeamsCommand}"></Button>
+            <Button Text="Ошибка при подаче"
+                    BackgroundColor="Red"
+                    Command="{Binding TeamsCommand}"></Button>
+            <Button Text="Успешная подача"
+                    BackgroundColor="Blue"
+                    Command="{Binding TeamsCommand}"></Button>
+            <Button Text="Успешная атака"
+                    BackgroundColor="Blue"
+                    Command="{Binding TeamsCommand}"></Button>
+            <Button Text="Атака заблокирована"
+                    BackgroundColor="Red"
+                    Command="{Binding TeamsCommand}"></Button>
+            <Button Text="Ошибка при атаке"
+                    BackgroundColor="Red"
+                    Command="{Binding TeamsCommand}"></Button>
+            <Button Text="Успешная Блок"
+                    BackgroundColor="Blue"
+                    Command="{Binding TeamsCommand}"></Button>
+            <Button Text="Ошибка"
+                    BackgroundColor="Red"
+                    Command="{Binding TeamsCommand}"></Button>
+            <Button Text="Ошибка оппонента"
+                    BackgroundColor="Blue"
+                    Command="{Binding TeamsCommand}"></Button>
+            <Button Text="Успех оппонента"
+                    BackgroundColor="Blue"
+                    Command="{Binding TeamsCommand}"></Button>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

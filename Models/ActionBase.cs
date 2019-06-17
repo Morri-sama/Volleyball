@@ -19,8 +19,8 @@ namespace Models
 
         public int Index { get; set; }
 
-        [ForeignKey("Rally")]
-        public int RallyId { get; set; }
-        public Rally Rally { get; set; }
+        //[ForeignKey("Rally")]
+        //public int RallyId { get; set; }
+        //public Rally Rally { get; set; }
     }
 }

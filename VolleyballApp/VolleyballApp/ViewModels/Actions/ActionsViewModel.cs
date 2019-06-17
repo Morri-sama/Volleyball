@@ -25,16 +25,16 @@ namespace VolleyballApp.ViewModels.Actions
 
             Actions = new ObservableCollection<ActionBase>();
 
-            CreateActionCommand = new Command(CreateAction);
+            //CreateActionCommand = new Command(CreateAction);
         }
 
-        private void CreateAction()
-        {
-            if (!Actions.Any())
-            {
-                _navigator.OpenModal(this, "VolleyballApp.Views.Actions.CreateServeView");
-            }
-        }
+        //private void CreateAction()
+        //{
+        //    if (!Actions.Any())
+        //    {
+        //        _navigator.OpenModal(this, "VolleyballApp.Views.Actions.CreateServeView");
+        //    }
+        //}
 
     }
 }

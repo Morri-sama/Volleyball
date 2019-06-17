@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="VolleyballApp.Views.Matches.MatchView">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Город"/>
+            <Entry Text="{Binding Name}"/>
+            <Label Text="Дата"/>
+            <DatePicker />
+            <Picker Title="Хозяева"
+                    ItemsSource="{Binding Teams}"
+                    ItemDisplayBinding="{Binding Path='Name'}"
+                    SelectedItem="{Binding Position}"/>
+            <Picker Title="Гости"
+                    ItemsSource="{Binding Teams}"
+                    ItemDisplayBinding="{Binding Path='Name'}"
+                    SelectedItem="{Binding Position}"/>
+            <Button Text="Отмена" 
+                        BackgroundColor="Transparent"
+                        TextColor="Black"
+                        Command="{Binding SignUpCommand}"/>
+            <Button Text="Создать"
+                        BackgroundColor="#2196F3" 
+                        TextColor="White" 
+                        HorizontalOptions="Center"
+                        Command="{Binding SignInCommand}"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

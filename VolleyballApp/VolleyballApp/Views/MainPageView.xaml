@@ -9,9 +9,9 @@
             <Button Text="Игроки"
                     Command="{Binding TeamsCommand}"></Button>
             <Button Text="Матчи"
-                    Command="{Binding TeamsCommand}"></Button>
-            <Button Text="Команды"
-                    Command="{Binding TeamsCommand}"></Button>
+                    Command="{Binding MatchesCommand}"></Button>
+            <Button Text="Действия"
+                    Command="{Binding ActionsCommand}"></Button>
             <Button Text="Настройки"
                     Command="{Binding TeamsCommand}"></Button>
         </StackLayout>
