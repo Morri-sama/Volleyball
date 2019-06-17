@@ -13,11 +13,8 @@
 
   <ItemGroup>
     <Compile Remove="Models\**" />
-    <Compile Remove="ViewModels\Rallies\**" />
     <EmbeddedResource Remove="Models\**" />
-    <EmbeddedResource Remove="ViewModels\Rallies\**" />
     <None Remove="Models\**" />
-    <None Remove="ViewModels\Rallies\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -61,6 +58,9 @@
     <EmbeddedResource Update="Views\MatchesView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="Views\Matches\MatchesView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Views\Matches\MatchView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
@@ -72,6 +72,15 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Players\PlayersView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Rallies\RalliesView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Rallies\RallyView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Sets\SetsView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Settings\SettingsView.xaml">

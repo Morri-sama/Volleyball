@@ -6,6 +6,7 @@ using System.ComponentModel;
 using System.Text;
 using System.Windows.Input;
 using VolleyballApp.Services.Navigation;
+using VolleyballApp.ViewModels.Matches;
 using Xamarin.Forms;
 
 namespace VolleyballApp.ViewModels.Sets
@@ -14,19 +15,20 @@ namespace VolleyballApp.ViewModels.Sets
     {
         private readonly INavigationService _navigator;
 
-        public ObservableCollection<ActionBase> Actions { get; set; }
+        public MatchViewModel MatchViewModel { get; protected set; }
+        public ICommand CreateSetCommand { get; set; }
 
-        public ICommand CreateActionCommand { get; set; }
-
-        public SetsViewModel(INavigationService navigator)
+        public SetsViewModel(INavigationService navigator, MatchViewModel matchViewModel)
         {
+            MatchViewModel = matchViewModel;
+
             _navigator = navigator;
-            CreateActionCommand = new Command(CreateAction);
+            CreateSetCommand = new Command(CreateSet);
         }
 
-        private void CreateAction()
+        private void CreateSet()
         {
-            Actions = new ObservableCollection<ActionBase>();
+            _navigator.NavigateTo(new SetViewModel(_navigator, this));
         }
     }
 }

@@ -8,6 +8,7 @@ using VolleyballApp.Services.Navigation;
 using VolleyballApp.ViewModels.Account;
 using VolleyballApp.ViewModels.Actions;
 using VolleyballApp.ViewModels.Matches;
+using VolleyballApp.ViewModels.Rallies;
 using VolleyballApp.ViewModels.Teams;
 using VolleyballApp.Views.Account;
 using Xamarin.Forms;
@@ -33,7 +34,7 @@ namespace VolleyballApp.ViewModels
 
         private void Actions()
         {
-            _navigator.NavigateTo(new ActionsViewModel(_navigator), "VolleyballApp.Views.Actions.ActionsView");
+            _navigator.NavigateTo(new MatchesViewModel(_navigator), "VolleyballApp.Views.Matches.MatchesView");
         }
 
         private void Teams()
@@ -43,7 +44,7 @@ namespace VolleyballApp.ViewModels
 
         private void Matches()
         {
-            _navigator.NavigateTo(new MatchesViewModel(_navigator), "VolleyballApp.Views.Matches.MatchView");
+            _navigator.NavigateTo(new MatchesViewModel(_navigator), "VolleyballApp.Views.Matches.MatchesView");
         }
     }
 }

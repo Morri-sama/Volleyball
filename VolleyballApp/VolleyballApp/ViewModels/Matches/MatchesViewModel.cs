@@ -3,8 +3,10 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
+using System.Windows.Input;
 using VolleyballApp.Helpers;
 using VolleyballApp.Services.Navigation;
+using Xamarin.Forms;
 
 namespace VolleyballApp.ViewModels.Matches
 {
@@ -12,19 +14,19 @@ namespace VolleyballApp.ViewModels.Matches
     {
         private readonly INavigationService _navigator;
 
-        public List<Team> Teams { get; protected set; }
-
-        public Team HomeTeam { get; set; }
-        public Team AwayTeam { get; set; }
+        public ICommand CreateMatchCommand { get; protected set; }
 
         public MatchesViewModel(INavigationService navigator)
         {
             _navigator = navigator;
 
-            Teams = WebApiClient.GetTeams();
+            CreateMatchCommand = new Command(CreateMatch);
         }
 
-
+        private void CreateMatch()
+        {
+            _navigator.NavigateTo(new MatchViewModel(_navigator));
+        }
 
     }
 }

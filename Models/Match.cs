@@ -22,5 +22,7 @@ namespace Models
         [ForeignKey("AwayTeam")]
         public int? AwayTeamId { get; set; }
         public Team AwayTeam { get; set; }
+
+        public ICollection<Set> Sets { get; set; }
     }
 }

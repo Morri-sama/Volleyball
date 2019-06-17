@@ -12,6 +12,9 @@ namespace Models
         /// </summary>
         public override string Result { get; set; }
 
+        [NotMapped]
+        public List<string> ResultOptions { get; set; } = new List<string>() { "Позитивный", "Негативный"};
+
         [ForeignKey("Player")]
         public int? PlayerId { get; set; }
         public Player Player { get; set; }

@@ -14,20 +14,20 @@
             <Picker Title="Хозяева"
                     ItemsSource="{Binding Teams}"
                     ItemDisplayBinding="{Binding Path='Name'}"
-                    SelectedItem="{Binding Position}"/>
+                    SelectedItem="{Binding HomeTeam}"/>
             <Picker Title="Гости"
                     ItemsSource="{Binding Teams}"
                     ItemDisplayBinding="{Binding Path='Name'}"
-                    SelectedItem="{Binding Position}"/>
+                    SelectedItem="{Binding AwayTeam}"/>
             <Button Text="Отмена" 
                         BackgroundColor="Transparent"
                         TextColor="Black"
                         Command="{Binding SignUpCommand}"/>
-            <Button Text="Создать"
+            <Button Text="Начать"
                         BackgroundColor="#2196F3" 
                         TextColor="White" 
                         HorizontalOptions="Center"
-                        Command="{Binding SignInCommand}"/>
+                        Command="{Binding BeginCommand}"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
