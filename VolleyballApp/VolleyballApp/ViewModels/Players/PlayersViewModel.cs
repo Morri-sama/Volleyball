@@ -19,7 +19,7 @@ namespace VolleyballApp.ViewModels.Players
     {
         private readonly INavigationService _navigator;
 
-        private TeamViewModel _team;
+        public TeamViewModel TeamViewModel { get; }
 
         public ObservableCollection<Player> Players { get; set; }
 
@@ -40,7 +40,7 @@ namespace VolleyballApp.ViewModels.Players
 
         public PlayersViewModel(INavigationService navigator, TeamViewModel team) : this(navigator)
         {
-            _team = team;
+            TeamViewModel = team;
         }
 
         private void AddPlayer()

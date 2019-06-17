@@ -13,7 +13,7 @@
     <ContentPage.Content>
         <StackLayout>
             <ListView x:Name="playersList"
-                      ItemsSource="{Binding Players}"
+                      ItemsSource="{Binding TeamViewModel.Team.Players}"
                       SelectedItem="{Binding SelectedPlayer, Mode=TwoWay}"
                       HasUnevenRows="True"
                       IsPullToRefreshEnabled="True">

@@ -5,7 +5,7 @@
     <ContentPage.Content>
         <StackLayout>
             <Label Text="Название команды"/>
-            <Entry Text="{Binding Name}"/>
+            <Entry Text="{Binding Team.Name}"/>
 
             
             

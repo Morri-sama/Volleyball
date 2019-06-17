@@ -21,7 +21,7 @@
                         <ViewCell>
                             <ViewCell.View>
                                 <StackLayout>
-                                    <Label Text="{Binding Name}" FontSize="Medium" />
+                                    <Label Text="{Binding Team.Name}" FontSize="Medium" />
                                 </StackLayout>
                             </ViewCell.View>
                         </ViewCell>

@@ -15,7 +15,8 @@ namespace VolleyballApp.ViewModels.Rallies
     public class RallyViewModel : ViewModelBase, INotifyPropertyChanged
     {
         private readonly INavigationService _navigator;
-        private readonly SetViewModel _setViewModel;
+        public Team HomeTeam { get; set; }
+        public Team AwayTeam { get; set; }
 
         public ObservableCollection<ActionBase> Actions { get; protected set; }
 
@@ -32,14 +33,17 @@ namespace VolleyballApp.ViewModels.Rallies
 
         public RallyViewModel(INavigationService navigator, SetViewModel setViewModel) : this(navigator)
         {
-            _setViewModel = setViewModel;
+            HomeTeam = setViewModel.SetsViewModel.MatchViewModel.HomeTeam;
+            AwayTeam = setViewModel.SetsViewModel.MatchViewModel.AwayTeam;
         }
 
         private void CreateAction()
         {
+
             if(Actions.Count == 0)
             {
-                _navigator.OpenModal(new ServeViewModel(_navigator, this), "VolleyballApp.Views.Actions.CreateServeView");
+                //_navigator.OpenModal(new ServeViewModel(_navigator, this), "VolleyballApp.Views.Actions.CreateServeView");
+
             }
         }
     }
