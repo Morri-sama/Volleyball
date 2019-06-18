@@ -15,9 +15,9 @@ namespace Models
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get => _id; set => Notify(ref _id, value, "Name"); }
+        public int Id { get => _id; set => Notify(ref _id, value, "Id"); }
         public string Name { get => _name; set => Notify(ref _name, value, "Name"); }
 
-        public ObservableCollection<Player> Players { get => _players; set => Notify(ref _players, value, "Name"); }
+        public ObservableCollection<Player> Players { get => _players; set => Notify(ref _players, value, "Players"); }
     }
 }

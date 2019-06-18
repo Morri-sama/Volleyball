@@ -5,12 +5,16 @@ using System.Text;
 
 namespace Models
 {
-    public class Serve : ActionBase
+    public class Serve : ActionBase 
     {
+        private string _result;
+        private Player _player;
+        private Player _playerReceiver;
+
         /// <summary>
         /// Возможные варианты: "Выиграл", "Ввёл", "Проиграл".
         /// </summary>
-        public override string Result { get; set; }
+        public override string Result { get => _result; set => Notify(ref _result, value, "Result"); }
 
         [NotMapped]
         public List<string> ResultOptions { get; set; } = new List<string>() { "Выиграл", "Ввёл", "Проиграл" };
@@ -20,10 +24,10 @@ namespace Models
 
         [ForeignKey("Player")]
         public int? PlayerId { get; set; }
-        public Player Player { get; set; }
+        public Player Player { get => _player; set => Notify(ref _player, value, "Name"); }
 
         [ForeignKey("PlayerReceiver")]
         public int? PlayerReceiverId { get; set; }
-        public Player PlayerReceiver { get; set; }
+        public Player PlayerReceiver { get => _playerReceiver; set => Notify(ref _playerReceiver, value, "Name"); }
     }
 }

@@ -6,6 +6,7 @@ using System.ComponentModel;
 using System.Text;
 using System.Windows.Input;
 using VolleyballApp.Services.Navigation;
+using VolleyballApp.ViewModels.Matches;
 using VolleyballApp.ViewModels.Rallies;
 using Xamarin.Forms;
 
@@ -15,20 +16,20 @@ namespace VolleyballApp.ViewModels.Sets
     {
         private readonly INavigationService _navigator;
 
-        public SetsViewModel SetsViewModel { get; set; }
-
-        public ObservableCollection<Rally> Rallies { get; protected set; }
+        public MatchViewModel MatchViewModel { get; private set; }
 
         public ICommand CreateRallyCommand { get; protected set; }
 
-        public SetViewModel(INavigationService navigator, SetsViewModel setsViewModel)
+        public SetViewModel(INavigationService navigator)
         {
             _navigator = navigator;
-            SetsViewModel = setsViewModel;
-
-            Rallies = new ObservableCollection<Rally>();
 
             CreateRallyCommand = new Command(CreateRally);
+        }
+
+        public SetViewModel(INavigationService navigator, MatchViewModel matchViewModel) : this(navigator)
+        {
+            MatchViewModel = matchViewModel;
         }
 
         private void CreateRally()

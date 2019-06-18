@@ -18,9 +18,10 @@ namespace VolleyballApp.ViewModels.Matches
 
         public List<Team> Teams { get => WebApiClient.GetTeams(); } 
 
+        public Match Match { get; private set; }
+
         public ICommand BeginCommand { get; protected set; }
 
-        public ObservableCollection<Set> Sets { get; set; }
 
         public Team HomeTeam { get; set; }
         public Team AwayTeam { get; set; }
@@ -29,14 +30,14 @@ namespace VolleyballApp.ViewModels.Matches
         {
             _navigator = navigator;
 
-            BeginCommand = new Command(Begin);
+            Match = new Match();
 
-            Sets = new ObservableCollection<Set>(); 
+            BeginCommand = new Command(Begin);
         }
 
         private void Begin()
         {
-            _navigator.NavigateTo(new SetsViewModel(_navigator, this), "VolleyballApp.Views.Sets.SetsView");
+            _navigator.NavigateTo(new SetViewModel(_navigator, this), "VolleyballApp.Views.Sets.SetView");
         }
     }
 }

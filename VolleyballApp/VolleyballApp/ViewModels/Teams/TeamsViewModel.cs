@@ -32,6 +32,7 @@ namespace VolleyballApp.ViewModels.Teams
         {
             _navigator = navigator;
 
+
             Teams = new ObservableCollection<TeamViewModel>(GetTeamViewModels());
             RefreshTeamsCommand = new Command(RefreshTeams);
             CreateTeamCommand = new Command(CreateTeam);

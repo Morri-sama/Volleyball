@@ -17,10 +17,13 @@ namespace VolleyballApp.ViewModels.Rallies
         private readonly INavigationService _navigator;
         public Team HomeTeam { get; set; }
         public Team AwayTeam { get; set; }
+        public Team SelectedTeam { get; set; }
 
         public ObservableCollection<ActionBase> Actions { get; protected set; }
 
         public ICommand CreateActionCommand { get; protected set; }
+        public ICommand HomeTeamSelectCommand { get; protected set; }
+        public ICommand AwayTeamSelectCommand { get; protected set; }
 
         public RallyViewModel(INavigationService navigator)
         {
@@ -29,22 +32,44 @@ namespace VolleyballApp.ViewModels.Rallies
             Actions = new ObservableCollection<ActionBase>();
 
             CreateActionCommand = new Command(CreateAction);
+            HomeTeamSelectCommand = new Command(SelectHomeTeam);
+            AwayTeamSelectCommand = new Command(SelectAwayTeam);
         }
 
         public RallyViewModel(INavigationService navigator, SetViewModel setViewModel) : this(navigator)
         {
-            HomeTeam = setViewModel.SetsViewModel.MatchViewModel.HomeTeam;
-            AwayTeam = setViewModel.SetsViewModel.MatchViewModel.AwayTeam;
+            HomeTeam = setViewModel.MatchViewModel.HomeTeam;
+            AwayTeam = setViewModel.MatchViewModel.AwayTeam;
+
+            _navigator.OpenModal(this, "VolleyballApp.Views.Rallies.SelectTeamView");
+        }
+
+        private void SelectHomeTeam()
+        {
+            SelectedTeam = HomeTeam;
+            _navigator.NavigateBack();
+        }
+
+        private void SelectAwayTeam()
+        {
+            SelectedTeam = AwayTeam;
+            _navigator.NavigateBack();
         }
 
         private void CreateAction()
         {
+            if (SelectedTeam == null)
+            {
+                _navigator.OpenModal(this, "VolleyballApp.Views.Rallies.SelectTeamView");
+            }
 
             if(Actions.Count == 0)
             {
-                //_navigator.OpenModal(new ServeViewModel(_navigator, this), "VolleyballApp.Views.Actions.CreateServeView");
+                _navigator.OpenModal(new ServeViewModel(_navigator, this), "VolleyballApp.Views.Actions.CreateServeView");
 
             }
+
+
         }
     }
 }

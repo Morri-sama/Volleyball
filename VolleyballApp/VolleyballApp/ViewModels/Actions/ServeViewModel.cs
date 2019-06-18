@@ -15,6 +15,9 @@ namespace VolleyballApp.ViewModels.Actions
         private readonly INavigationService _navigator;
         private readonly RallyViewModel _rallyViewModel;
 
+
+        public Serve Serve { get; protected set; }
+
         public ICommand SaveCommand { get; protected set; }
 
         public ServeViewModel(INavigationService navigator, RallyViewModel rallyViewModel)
@@ -22,15 +25,16 @@ namespace VolleyballApp.ViewModels.Actions
             _navigator = navigator;
             _rallyViewModel = rallyViewModel;
 
+            Serve = new Serve();
+
             SaveCommand = new Command(Save);
         }
 
         private void Save()
         {
-            _rallyViewModel.Actions.Add(new Serve()
-            {
-                
-            });
+            Serve.Index = _rallyViewModel.Actions.Count;
+            _rallyViewModel.Actions.Add(Serve);
+            _navigator.NavigateBack();
         }
     }
 }
