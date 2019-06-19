@@ -4,8 +4,18 @@
              x:Class="VolleyballApp.Views.Actions.CreateServeView">
     <ContentPage.Content>
         <StackLayout>
+            <Picker Title="Подающий игрок"
+                    ItemsSource="{Binding RallyViewModel.SelectedTeam.Players}"
+                    ItemDisplayBinding="{Binding Path='Name'}"
+                    SelectedItem="{Binding Serve.Player}"/>
+
+
             <Picker Title="Исход"
-                    ItemsSource="{Binding ResultOptions}"/>
+                    ItemsSource="{Binding Serve.ResultOptions}"
+                    SelectedItem="{Binding Serve.Result}"/>
+
+            <Button Text="Ок"
+                    Command="{Binding SaveCommand}"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

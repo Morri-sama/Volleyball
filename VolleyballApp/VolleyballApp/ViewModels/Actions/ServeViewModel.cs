@@ -13,28 +13,37 @@ namespace VolleyballApp.ViewModels.Actions
     public class ServeViewModel : ViewModelBase, INotifyPropertyChanged
     {
         private readonly INavigationService _navigator;
-        private readonly RallyViewModel _rallyViewModel;
+        public RallyViewModel RallyViewModel { get; private set; }
 
+        public Team Team { get; protected set; }
 
         public Serve Serve { get; protected set; }
 
         public ICommand SaveCommand { get; protected set; }
 
-        public ServeViewModel(INavigationService navigator, RallyViewModel rallyViewModel)
+        public ServeViewModel(INavigationService navigator, RallyViewModel rallyViewModel , Team team)
         {
             _navigator = navigator;
-            _rallyViewModel = rallyViewModel;
+            RallyViewModel = rallyViewModel;
 
             Serve = new Serve();
+            Serve.Team = team;
+            Team = team;
 
             SaveCommand = new Command(Save);
         }
 
         private void Save()
         {
-            Serve.Index = _rallyViewModel.Actions.Count;
-            _rallyViewModel.Actions.Add(Serve);
-            _navigator.NavigateBack();
+            Serve.Index = RallyViewModel.Actions.Count;
+            RallyViewModel.Actions.Add(Serve);
+
+            
+
+
+            //если фейл, добавить очко противоположной команде
+
+            _navigator.PopModal();
         }
     }
 }

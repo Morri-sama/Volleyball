@@ -5,11 +5,9 @@ using System.Text;
 
 namespace Models
 {
-    public class Serve : ActionBase 
+    public class Serve : ActionBase
     {
         private string _result;
-        private Player _player;
-        private Player _playerReceiver;
 
         /// <summary>
         /// Возможные варианты: "Выиграл", "Ввёл", "Проиграл".
@@ -17,17 +15,32 @@ namespace Models
         public override string Result { get => _result; set => Notify(ref _result, value, "Result"); }
 
         [NotMapped]
-        public List<string> ResultOptions { get; set; } = new List<string>() { "Выиграл", "Ввёл", "Проиграл" };
+        public List<string> ResultOptions { get; set; } = new List<string>() { "Выиграл", "Ввёл", "Аут", "Ошибка" };
 
         public override string Name { get; set; } = "Подача";
-        public override string Description { get; set; }
+        public override string Description
+        {
+            get
+            {
+                if (Result == "Выиграл")
+                {
+                    return $"Игрок {Player.Name} совершил подачу. Принёс своё очко своей команде.";
+                }
+                if(Result == "Ввёл")
+                {
+                    return $"Игрок {Player.Name} совершил подачу. Ввёл мяч в игру";
+                }
+                if (Result == "Аут")
+                {
+                    return $"Игрок {Player.Name} совершил подачу. Мяч попал в аут";
+                }
+                if (Result == "Ошибка")
+                {
+                    return $"Игрок {Player.Name} совершил подачу. Ошибка при подаче";
+                }
 
-        [ForeignKey("Player")]
-        public int? PlayerId { get; set; }
-        public Player Player { get => _player; set => Notify(ref _player, value, "Name"); }
-
-        [ForeignKey("PlayerReceiver")]
-        public int? PlayerReceiverId { get; set; }
-        public Player PlayerReceiver { get => _playerReceiver; set => Notify(ref _playerReceiver, value, "Name"); }
+                return null;
+            }
+        }
     }
 }

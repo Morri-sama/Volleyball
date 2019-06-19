@@ -24,7 +24,7 @@ namespace WebApi.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            var teams = _context.Teams.ToList();
+            var teams = _context.Teams.Include(s=>s.Players).ToList();
             if (!teams.Any())
             {
                 return NotFound();
